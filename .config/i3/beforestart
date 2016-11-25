@@ -1,0 +1,4 @@
+$ctl set-sink-volume 0 '20%' &
+xset -b &
+setxkbmap -layout 'us,ru' -option 'grp:caps_toggle,grp_led:caps'
+

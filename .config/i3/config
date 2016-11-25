@@ -68,38 +68,49 @@ bindsym $mod+space focus mode_toggle
 # focus the parent container
 bindsym $mod+a focus parent
 
+set $ws1 "1 "
+set $ws2 "2 "
+set $ws3 "3 "
+set $ws4 "4 "
+set $ws5 "5 "
+set $ws6 "6 "
+set $ws7 "7 "
+set $ws8 "8 "
+set $ws9 "9 "
+set $ws10 "10 "
+
 # switch to workspace
-bindsym $mod+1 workspace 1: dev
-bindsym $mod+2 workspace 2: www
-bindsym $mod+3 workspace 3: pass
-bindsym $mod+4 workspace 4
-bindsym $mod+5 workspace 5
-bindsym $mod+6 workspace 6
-bindsym $mod+7 workspace 7
-bindsym $mod+8 workspace 8: work
-bindsym $mod+9 workspace 9
-bindsym $mod+0 workspace 10: music
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace 1: dev
-bindsym $mod+Shift+2 move container to workspace 2: www
-bindsym $mod+Shift+3 move container to workspace 3: pass
-bindsym $mod+Shift+4 move container to workspace 4
-bindsym $mod+Shift+5 move container to workspace 5
-bindsym $mod+Shift+6 move container to workspace 6
-bindsym $mod+Shift+7 move container to workspace 7
-bindsym $mod+Shift+8 move container to workspace 8: work
-bindsym $mod+Shift+9 move container to workspace 9
-bindsym $mod+Shift+0 move container to workspace 10: music
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
 
 # workspace assignment (use "xprop")
-assign [class="^Google-chrome$"] 2: www
-assign [title="^Telegram$"] 2: www
-#assign [title="^Database$"] 3: pass
-assign [title="^KeePass$"] 3: pass
-assign [class="^Simplenote$"] 3: pass
-assign [class="^TeamViewer$"] 8: work
-assign [class="^Audacious"] 10: music
+assign [class="^Google-chrome$"] $ws2
+assign [class="^Simplenote$"] $ws3
+assign [class="TelegramDesktop"] $ws4
+#assign [class="KeePass2"] scratchpad
+assign [title="^TeamViewer$"] $ws8
+assign [class="^Steam$"] $ws9
+assign [class="^Audacious"] $ws10
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -133,16 +144,18 @@ for_window [class="$"] border none
 # scratchpad
 bindsym $mod+m move scratchpad
 bindsym $mod+o scratchpad show
+for_window [class="KeePass2"] move to scratchpad
 
 # Pulse Audio controls
-#bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
-#bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
-#bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
 
-#bindsym XF86AudioPlay exec playerctl play
-#bindsym XF86AudioPause exec playerctl pause
-#bindsym XF86AudioNext exec playerctl next
-#bindsym XF86AudioPrev exec playerctl previous
+bindsym XF86AudioPlay exec playerctl play
+bindsym XF86AudioPause exec playerctl pause
+bindsym XF86AudioStop exec playerctl stop
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -166,14 +179,15 @@ bar {
 
 # before autostart
 # exec --no-startup-id pactl upload-sample ~/.i3/that_was_easy.wav that_was_easy
-# exec urxvt -name scratchpad -e bash
-exec --no-startup-id ~/.config/.i3/autostart
+exec --no-startup-id ~/.config/i3/beforestart
 
 # autostart
 exec google-chrome
 exec ~/Downloads/Telegram/Telegram
-for_window [title="^Telegram$"] resize shrink width 400px
+#for_window [title="^Telegram$"] resize shrink width 400px
 exec /usr/share/simplenote/simplenote
-exec keepass2
+#exec keepass2
 exec audacious
 # exec --no-startup-id i3-msg 'workspace 2: www; exec telegram'
+exec urxvt -name scratchpad -e keepass2 
+
