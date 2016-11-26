@@ -6,12 +6,15 @@ filetype plugin indent on
 
 set tabstop=4 "show existing tab with 4 spaces
 set shiftwidth=4 " add 4 spaces with '>'
+set shiftround
+" set expandtab
+
 set hlsearch " search highlighting
 set incsearch " search while typing
 set number
 set numberwidth=5
 set ruler
-" set expandtab
+set relativenumber
 " set autoindent " copy indent length from prev line
 
 set scrolljump=5 " srolling offsets
@@ -45,17 +48,27 @@ set autochdir
 set fileencodings=utf-8,cp1251,koi8-r,cp866 " autodetection file types
 " set visualbell " disable beeps
 
+set pastetoggle=<F2>
+set clipboard=unnamed
+
+let mapleader = ","
+
 " ---------- KEYMAPPING ----------
 noremap { {<CR>}<Esc>O<TAB>
 "inoremap ( (<Space><Space>)<Esc><Left>i
 "inoremap [ [<Space><Space>]<Esc><Left>i
 "imap <C-Space> <C-X><C-O>
 imap <Ins> <Esc>i
+
 " fast motion
-nmap <C-j> 8j
+" nmap <C-j> 8j
 nmap <C-k> 8k
 nmap <C-l> 8l
 " nmap <C-;> 8;
+
+" easier moving of code blocks
+vnoremap < <gv  " better indentation
+vnoremap > >gv  " better indentation
 
 " improved Page Up/Down
 nmap <PageUp> <C-U><C-U>
@@ -79,45 +92,21 @@ inoremap jj <Esc>
 "imap <c-z> <esc>ui
 
 " buffers and tabs
-map ,t :tabnew<cr>
-nmap ,t :tabnew<cr>
-imap ,t <esc>:tabnew<cr>i
+map <Leader>t :tabnew<cr>
+nmap <Leader>t :tabnew<cr>
+imap <Leader>t <esc>:tabnew<cr>i
 
-map ,p :tabp<cr>
-nmap ,p :tabp<cr>
-imap ,p <esc>:tabp<cr>i
+map <Leader>p :tabp<cr>
+nmap <Leader>p :tabp<cr>
+imap <Leader>p <esc>:tabp<cr>i
 
-map ,n :tabn<cr>
-nmap ,n :tabn<cr>
-imap ,n <esc>:tabn<cr>i
+map <Leader>n :tabn<cr>
+nmap <Leader>n :tabn<cr>
+imap <Leader>n <esc>:tabn<cr>i
 
-map <A-1> 1gt<cr>
-nmap <A-1> 1gt<cr>
-imap <A-1> <esc>1gt<cr>i
-map <A-2> 2gt<cr>
-nmap <A-2> 2gt<cr>
-imap <A-2> <esc>2gt<cr>i
-map <A-3> 3gt<cr>
-nmap <A-3> 3gt<cr>
-imap <A-3> <esc>3gt<cr>i
-map <A-4> 4gt<cr>
-nmap <A-4> 4gt<cr>
-imap <A-4> <esc>4gt<cr>i
-map <A-5> 5gt<cr>
-nmap <A-5> 5gt<cr>
-imap <A-5> <esc>5gt<cr>i
-map <A-6> 6gt<cr>
-nmap <A-6> 6gt<cr>
-imap <A-6> <esc>6gt<cr>i
-map <A-7> 7gt<cr>
-nmap <A-7> 7gt<cr>
-imap <A-7> <esc>7gt<cr>i
-map <A-8> 8gt<cr>
-nmap <A-8> 8gt<cr>
-imap <A-8> <esc>8gt<cr>i
-map <A-9> 9gt<cr>
-nmap <A-9> 9gt<cr>
-imap <A-9> <esc>9gt<cr>i
+map <Leader>c :tabclose<cr>
+nmap <Leader>c :tabclose<cr>
+imap <Leader>c <esc>:tabclose<cr>i
 
 "map <C-H> <C-W><Left>
 "imap <C-H> <esc><C-W><Left>
@@ -128,16 +117,13 @@ imap <A-9> <esc>9gt<cr>i
 "map <C-J> <C-W><Down>
 "imap <C-J> <esc><C-W><Down>
 
-map <C-\> :bd<CR> " close tab
-imap <C-\> <esc>:bd<CR>i
-
 " fast search
 "nmap ; :%s/\<<c-r>=expand("<cword>")<cr>\>/<c-r>=expand("<cword>")<cr>
 nmap \ /<c-r>=expand("<cword>")<cr> " fast replace ?
 
-map <F2> :mksession! ~/.vim/my_session<cr> " save session
-vmap <F2> <esc>:mksession! ~/.vim/my_session<cr>
-imap <F2> <esc>:mksession! ~/.vim/my_session<cr>
+map <F3> :mksession! ~/.vim/my_session<cr> " save session
+vmap <F3> <esc>:mksession! ~/.vim/my_session<cr>
+imap <F3> <esc>:mksession! ~/.vim/my_session<cr>
 
 map <F4> :source ~/.vim/my_session<cr> " open session
 vmap <F4> <esc>:source ~/.vim/my_session<cr>
@@ -161,11 +147,6 @@ imap <F5> <esc>:make!<cr><cr>:call Vim_msg_show( )<cr>
 "map <F11> :TlistToggle<CR>
 "imap <F11> <Esc>:TlistToggle<CR>
 "vmap <F11> <Esc>:TlistToggle<CR>
-
-" F12 - Nerdtree
-"map <F12> :exe 'NERDTreeToggle ' .$CURDIR<cr>
-"vmap <F12> <esc>:exe 'NERDTreeToggle'. $CURDIR<cr>
-"imap <F12> <esc>:exe 'NERDTreeToggle'. $CURDIR<cr>
 
 " Ctrl+F12  - ctags 
 "map <C-F12> :!ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
@@ -253,7 +234,14 @@ map , ?
 " ----- ----- PLUGINS ----- -----
 call plug#begin('~/.vim/plugged')
 Plug 'mrtazz/simplenote.vim'
+Plug 'scrooloose/nerdtree'
 call plug#end()
 
 " https://github.com/mrtazz/simplenote.vim 
 source ~/.simplenoterc
+
+nnoremap <Leader>f :NERDTreeToggle<Enter>
+let NERDTreeQuitOnOpen = 1
+let NERDTreeAutoDeleteBuffer = 1
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
