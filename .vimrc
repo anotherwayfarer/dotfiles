@@ -7,7 +7,14 @@ filetype plugin indent on
 set tabstop=4 "show existing tab with 4 spaces
 set shiftwidth=4 " add 4 spaces with '>'
 set shiftround
-" set expandtab
+set expandtab
+let _curfile = expand("%:t")
+if _curfile =~ "Makefile" || _curfile =~ "makefile" || _curfile =~ ".*\.mk"
+set noexpandtab
+endif
+
+set list
+set listchars=tab:>-
 
 set hlsearch " search highlighting
 set incsearch " search while typing
@@ -17,7 +24,7 @@ set ruler
 set relativenumber
 " set autoindent " copy indent length from prev line
 
-set scrolljump=5 " srolling offsets
+set scrolljump=1 " srolling offsets
 set scrolloff=5
 set sidescroll=5
 set mouse=a
@@ -43,7 +50,6 @@ set noswapfile
 " autocmd VimLeavePre * silent mksession ~/.vim/my_session " save session before close
 set nocompatible " with vim
 set hidden " always keep buffer in memory
-" set clipboard=unnamed " for WINDOWS only
 set autochdir
 set fileencodings=utf-8,cp1251,koi8-r,cp866 " autodetection file types
 " set visualbell " disable beeps
@@ -239,6 +245,8 @@ call plug#end()
 
 " https://github.com/mrtazz/simplenote.vim 
 source ~/.simplenoterc
+
+nnoremap <Leader>s :SimplenoteList<Enter>
 
 nnoremap <Leader>f :NERDTreeToggle<Enter>
 let NERDTreeQuitOnOpen = 1
