@@ -28,6 +28,7 @@ alias .....="cd ../../../.."
 alias shutdown="sudo shutdown now"
 alias restart="sudo restart now"
 
+alias i3conf="vim ~/.config/i3/config"
 alias vimrc="vim ~/.vimrc"
 alias zshrc="vim ~/.zshrc"
 
