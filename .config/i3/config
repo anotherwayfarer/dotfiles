@@ -186,8 +186,7 @@ exec google-chrome
 exec ~/Downloads/Telegram/Telegram
 #for_window [title="^Telegram$"] resize shrink width 400px
 exec /usr/share/simplenote/simplenote
-#exec keepass2
+exec keepass2 #launch in scratchpad
 exec audacious
-# exec --no-startup-id i3-msg 'workspace 2: www; exec telegram'
 exec urxvt -name scratchpad -e keepass2 
-
+exec i3-sensible-terminal
