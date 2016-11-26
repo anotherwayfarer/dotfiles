@@ -108,7 +108,6 @@ bindsym $mod+Shift+0 move container to workspace $ws10
 assign [class="^Google-chrome$"] $ws2
 assign [class="^Simplenote$"] $ws3
 assign [class="TelegramDesktop"] $ws4
-#assign [class="KeePass2"] scratchpad
 assign [title="^TeamViewer$"] $ws8
 assign [class="^Steam$"] $ws9
 assign [class="^Audacious"] $ws10
@@ -158,6 +157,24 @@ bindsym XF86AudioStop exec playerctl stop
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
+# setup colors
+set $bg-color            #2f2f2f
+set $inactive-bg-color   #2f343f
+set $text-color          #f3f4f5
+set $inactive-text-color #676E7D
+set $urgent-bg-color     #E53935
+set $separator-color     #A7B0B1
+set $focused-bar-color   #16a085
+set $urgent-bar-color    #e74c3c
+
+# window colors
+#                       border              background         text                 indicator
+client.focused          $bg-color           $bg-color          $text-color          #00ff00
+client.unfocused        $inactive-bg-color  $inactive-bg-color $inactive-text-color #00ff00
+client.focused_inactive $inactive-bg-color  $inactive-bg-color $inactive-text-color #00ff00
+client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          #00ff00
+
+
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
@@ -169,12 +186,21 @@ bar {
         workspace_buttons yes
         strip_workspace_numbers no
         colors {
-            background #2f2f2f
-            statusline #E7F0F1
-            separator #A7B0B1
-            active_workspace   #333333 #5f676a #ffffff
-            inactive_workspace #333333 #222222 #888888
-            urgent_workspace   #2f343a #900000 #ffffff
+            background $bg-color
+                separator #757575
+            #                  border             background         text
+            focused_workspace  $bg-color          $bg-color          $text-color
+            inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
+            urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
+        }
+
+        colors {
+            background $bg-color
+            separator $separator-color
+            #                  border             bg                  text 
+            focused_workspace  $focused-bar-color $focused-bar-color  #ffffff
+            inactive_workspace $bg-color          $bg-color           #999999
+            urgent_workspace   $urgent-bar-color  $bg-color           #ffffff
         }
 }
 
