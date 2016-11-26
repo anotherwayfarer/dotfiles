@@ -52,10 +52,10 @@ noremap { {<CR>}<Esc>O<TAB>
 "imap <C-Space> <C-X><C-O>
 imap <Ins> <Esc>i
 " fast motion
-nmap <C-h> 5h
 nmap <C-j> 5j
 nmap <C-k> 5k
 nmap <C-l> 5l
+nmap <C-Semicolon> 5l
 
 " improved Page Up/Down
 nmap <PageUp> <C-U><C-U>
@@ -69,9 +69,9 @@ vmap <C-s> <esc>:w!<cr>
 imap <C-s> <esc>:w!<cr>
 
 " undo
-nmap <c-z> u
-vmap <c-z> <esc>u
-imap <c-z> <esc>ui
+"nmap <c-z> u
+"vmap <c-z> <esc>u
+"imap <c-z> <esc>ui
 
 " buffers and tabs
 map ,t :tabnew<cr>
@@ -127,7 +127,7 @@ map <C-\> :bd<CR> " close tab
 imap <C-\> <esc>:bd<CR>i
 
 " fast search
-nmap ; :%s/\<<c-r>=expand("<cword>")<cr>\>/<c-r>=expand("<cword>")<cr>
+"nmap ; :%s/\<<c-r>=expand("<cword>")<cr>\>/<c-r>=expand("<cword>")<cr>
 nmap \ /<c-r>=expand("<cword>")<cr> " fast replace ?
 
 map <F2> :mksession! ~/.vim/my_session<cr> " save session
@@ -167,6 +167,11 @@ imap <F5> <esc>:make!<cr><cr>:call Vim_msg_show( )<cr>
 "vmap <F12> <esc>:!ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 "imap <F12> <esc>:!ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 
+" remap to JKL;
+noremap ; l
+noremap l k
+noremap k j
+noremap j h
 
 "russian layout mapping
 map ё `
