@@ -52,10 +52,10 @@ noremap { {<CR>}<Esc>O<TAB>
 "imap <C-Space> <C-X><C-O>
 imap <Ins> <Esc>i
 " fast motion
-nmap <C-j> 5j
-nmap <C-k> 5k
-nmap <C-l> 5l
-nmap <C-Semicolon> 5l
+nmap <C-j> 8j
+nmap <C-k> 8k
+nmap <C-l> 8l
+" nmap <C-;> 8;
 
 " improved Page Up/Down
 nmap <PageUp> <C-U><C-U>
@@ -67,6 +67,11 @@ imap <PageDown> <C-O><C-D><C-O><C-D>
 map <C-s> :w!<cr>
 vmap <C-s> <esc>:w!<cr>
 imap <C-s> <esc>:w!<cr>
+
+" https://sheerun.net/2014/03/21/how-to-boost-your-vim-productivity/
+" nmap <Space><Space> V
+map q: :q
+inoremap jj <Esc>
 
 " undo
 "nmap <c-z> u
@@ -172,6 +177,7 @@ noremap ; l
 noremap l k
 noremap k j
 noremap j h
+noremap h <Nop>
 
 "russian layout mapping
 map ё `
@@ -244,3 +250,10 @@ map Б <
 map Ю >
 map , ?
 
+" ----- ----- PLUGINS ----- -----
+call plug#begin('~/.vim/plugged')
+Plug 'mrtazz/simplenote.vim'
+call plug#end()
+
+" https://github.com/mrtazz/simplenote.vim 
+source ~/.simplenoterc
