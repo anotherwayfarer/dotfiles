@@ -1,0 +1,9 @@
+nnoremap ; 2l
+nnoremap l 2k
+nnoremap k 2j
+nnoremap j 2h
+set incsearch
+set hlsearch
+set ignorecase
+set smartcase
+nnoremap jj <Esc>  
