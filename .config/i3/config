@@ -75,7 +75,7 @@ bindsym $mod+a focus parent
 #bindsym $mod+shift+x exec i3lock
 
 set $ws1 "1 Editor "
-set $ws2 "2 Chrome "
+set $ws2 "2 FireFox "
 set $ws3 "3 Notepad "
 set $ws4 "4 Chat "
 set $ws5 "5 "
@@ -111,6 +111,7 @@ bindsym $mod+Shift+0 move container to workspace $ws10
 
 # workspace assignment (use "xprop")
 assign [class="^Google-chrome$"] $ws2
+assign [class="^Firefox$"] $ws2
 assign [class="^Simplenote$"] $ws3
 assign [class="TelegramDesktop"] $ws4
 assign [title="^TeamViewer$"] $ws8
@@ -207,15 +208,18 @@ bar {
 # before autostart
 # exec --no-startup-id pactl upload-sample ~/.i3/that_was_easy.wav that_was_easy
 exec --no-startup-id ~/.config/i3/beforestart
-exec_always --no-startup-id feh --bg-fill ~/Pictures/cool-wallpaper-3.jpg
+exec_always --no-startup-id feh --bg-fill ~/Pictures/mywall.png
 exec_always compton -f
 
 # autostart
-exec google-chrome
+exec firefox
 exec ~/Downloads/Telegram/Telegram
 #for_window [title="^Telegram$"] resize shrink width 400px
-exec /usr/share/simplenote/simplenote
+#exec /usr/share/simplenote/simplenote 
 exec keepass2 #launch in scratchpad
 exec audacious
 exec urxvt -name scratchpad -e keepass2 
-exec i3-sensible-terminal
+exec --no-startup-id i3-msg 'workspace $ws10; exec thunar /media/aim/Media/Music; move right; workspace $ws1'
+exec --no-startup-id i3-msg 'workspace $ws3; exec terminator -x vim +SimplenoteList; move right;workspace $ws1'
+exec i3-sensible-terminal #in 1st workspace by default
+
