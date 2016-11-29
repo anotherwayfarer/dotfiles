@@ -153,11 +153,12 @@ for_window [class="$"] border none
 bindsym $mod+m move scratchpad
 bindsym $mod+o scratchpad show
 for_window [class="KeePass2"] move to scratchpad
+# for_window [class="TeamViewer"] floating enable
 
 # Pulse Audio controls
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+bindsym XF86AudioLowerVolume exec amixer -D pulse sset Master 2%-
+bindsym XF86AudioRaiseVolume exec amixer -D pulse sset Master 2%+
+bindsym XF86AudioMute exec amixer -D pulse sset Master 0%
 
 bindsym XF86AudioPlay exec playerctl play
 bindsym XF86AudioPause exec playerctl pause
@@ -198,7 +199,7 @@ bar {
         colors {
             background $bg-color
             separator $separator-color
-            #                  border             bg                  text 
+            #                  border             bg                  text
             focused_workspace  $focused-bar-color $focused-bar-color  #ffffff
             inactive_workspace $bg-color          $bg-color           #999999
             urgent_workspace   $urgent-bar-color  $bg-color           #ffffff
@@ -215,10 +216,10 @@ exec_always compton -f
 exec firefox
 exec ~/Downloads/Telegram/Telegram
 #for_window [title="^Telegram$"] resize shrink width 400px
-#exec /usr/share/simplenote/simplenote 
+#exec /usr/share/simplenote/simplenote
 exec keepass2 #launch in scratchpad
 exec audacious
-exec urxvt -name scratchpad -e keepass2 
+exec urxvt -name scratchpad -e keepass2
 exec --no-startup-id i3-msg 'workspace $ws10; exec thunar /media/aim/Media/Music; move right; workspace $ws1'
 exec --no-startup-id i3-msg 'workspace $ws3; exec terminator -x vim +SimplenoteList; move right;workspace $ws1'
 exec i3-sensible-terminal #in 1st workspace by default
