@@ -41,6 +41,9 @@ autocmd BufEnter,BufWritePost ?* setlocal colorcolumn=121 " mark 101 column
 " > :%retab
 
 " ---------- SYSTEM ----------
+" set exrc " disable load non-default .vimrc
+" set secure " disable specific non-secure commands from non-default .vimrc
+
 set history=128
 set undolevels=512
 set undofile " save undo history to file
@@ -170,9 +173,13 @@ noremap h <Nop>
 " so ~/.vimrussianrc
 
 " ----- ----- PLUGINS ----- -----
+" vim-plug plugin manager
 call plug#begin('~/.vim/plugged')
 Plug 'mrtazz/simplenote.vim'
 Plug 'scrooloose/nerdtree'
+Plug 'ervandew/supertab'
+Plug 'myint/clang_complete'
+Plug 'tpope/vim-surround'
 call plug#end()
 
 " https://github.com/mrtazz/simplenote.vim 
@@ -186,3 +193,5 @@ let NERDTreeQuitOnOpen = 1
 let NERDTreeAutoDeleteBuffer = 1
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
+
+let g:clang_library_path='/usr/lib/llvm-3.8/lib/'
