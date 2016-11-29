@@ -1,3 +1,3 @@
 #!/bin/sh
     
-df -h "$1" | awk 'FNR == 2 {print $4}'
+df -h "$1" | gawk 'NR == 2 {print $4}'
