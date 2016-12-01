@@ -1,3 +1,3 @@
 #!/bin/sh
 
-cat /proc/loadavg | gawk '{printf ("%d%",$1*100)}'
+cat /proc/loadavg | gawk '{print $1}'
