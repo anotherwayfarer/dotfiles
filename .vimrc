@@ -2,34 +2,38 @@ syntax enable
 " colorscheme darkblue
 colorscheme monokai
 
-filetype plugin indent on
+filetype plugin indent on " indent depends on file type
+" set autoindent " copy indent length from prev line
 
 set tabstop=4 "show existing tab with 4 spaces
 set shiftwidth=4 " add 4 spaces with '>'
-set shiftround
+set shiftround " round multiple of four
 set expandtab
 let _curfile = expand("%:t")
 if _curfile =~ "Makefile" || _curfile =~ "makefile" || _curfile =~ ".*\.mk"
-set noexpandtab
+set noexpandtab " don't replace tabs with places when it's makefile
 endif
 
 set list
-set listchars=tab:>-
+set listchars=tab:>- " show tabs
 
 set hlsearch " search highlighting
 set incsearch " search while typing
-set number
+
+set number " left side
 set numberwidth=5
-set ruler
 set relativenumber
-" set autoindent " copy indent length from prev line
+
+set ruler " bottom line
 
 set scrolljump=1 " srolling offsets
 set scrolloff=5
 set sidescroll=5
+
 set mouse=a
 set winminheight=0 " window size
 set winminwidth=0
+
 set laststatus=2 " always view status line 
 set showcmd " view current commands
 " command line format
@@ -51,7 +55,7 @@ set undodir=$VIMDIR/undo/
 set nobackup
 set noswapfile
 " autocmd VimLeavePre * silent mksession ~/.vim/my_session " save session before close
-set nocompatible " with vim
+set nocompatible " with vi
 set hidden " always keep buffer in memory
 set autochdir
 set fileencodings=utf-8,cp1251,koi8-r,cp866 " autodetection file types
@@ -63,50 +67,17 @@ set clipboard=unnamed
 let mapleader = ","
 
 " ---------- KEYMAPPING ----------
-noremap { {<CR>}<Esc>O<TAB>
-"inoremap ( (<Space><Space>)<Esc><Left>i
-"inoremap [ [<Space><Space>]<Esc><Left>i
-" inoremap <Nul> <C-n>
-" imap <C-Space> <C-n><C-p>
-imap <Ins> <Esc>i
+inoremap { {<CR>}<Esc>O
+inoremap ( ()<Esc>i
+inoremap [ []<Esc>i
 
-inoremap <expr> <C-Space> pumvisible() \|\| &omnifunc == '' ?
-            \ "\<lt>C-n>" :
-            \ "\<lt>C-x>\<lt>C-o><c-r>=pumvisible() ?" .
-            \ "\"\\<lt>c-n>\\<lt>c-p>\\<lt>c-n>\" :" .
-            \ "\" \\<lt>bs>\\<lt>C-n>\"\<CR>"
-imap <C-@> <C-Space>
-
-" fast motion
-" nmap <C-j> 8j
-" nmap <C-k> 8k
-" nmap <C-l> 8l
-" nmap <C-;> 8;
-
-" easier moving of code blocks
+" easier moving of code blocks in visual mode
 vnoremap < <gv  " better indentation
 vnoremap > >gv  " better indentation
 
-" improved Page Up/Down
-" nmap <PageUp> <C-U><C-U>
-" imap <PageUp> <C-O><C-U><C-O><C-U>
-" nmap <PageDown> <C-D><C-D>
-" imap <PageDown> <C-O><C-D><C-O><C-D>
-
-" save
-" map <C-s> :w!<cr>
-" vmap <C-s> <esc>:w!<cr>
-" imap <C-s> <esc>:w!<cr>
-
 " https://sheerun.net/2014/03/21/how-to-boost-your-vim-productivity/
-" nmap <Space><Space> V
 map q: :q
 inoremap jj <Esc>
-
-" undo
-"nmap <c-z> u
-"vmap <c-z> <esc>u
-"imap <c-z> <esc>ui
 
 " buffers and tabs
 map <Leader>t :tabnew<cr>
@@ -125,17 +96,9 @@ map <Leader>c :tabclose<cr>
 nmap <Leader>c :tabclose<cr>
 imap <Leader>c <esc>:tabclose<cr>i
 
-"map <C-H> <C-W><Left>
-"imap <C-H> <esc><C-W><Left>
-"map <C-L> <C-W><Right>
-"imap <C-L> <esc><C-W><Right>
-"map <C-K> <C-W><Up>
-"imap <C-K> <esc><C-W><Up>
-"map <C-J> <C-W><Down>
-"imap <C-J> <esc><C-W><Down>
-
+" fast replace
+nmap ' :%s/\<<c-r>=expand("<cword>")<cr>\>/<c-r>=expand("<cword>")<cr>
 " fast search
-"nmap ; :%s/\<<c-r>=expand("<cword>")<cr>\>/<c-r>=expand("<cword>")<cr>
 nmap \ /<c-r>=expand("<cword>")<cr> " fast replace ?
 
 map <F3> :mksession! ~/.vim/my_session<cr> " save session
@@ -147,14 +110,14 @@ vmap <F4> <esc>:source ~/.vim/my_session<cr>
 imap <F4> <esc>:source ~/.vim/my_session<cr>
 
 " F5 - make
-function Vim_msg_show( )
-	let s:vim_msg_state=1
-	botright copen
-endfunction
+" function Vim_msg_show( )
+" 	let s:vim_msg_state=1
+" 	botright copen
+" endfunction
 
-map <F5> :make!<cr><cr>:call Vim_msg_show( )<cr>
-vmap <F5> <esc>:make!<cr><cr>:call Vim_msg_show( )<cr>
-imap <F5> <esc>:make!<cr><cr>:call Vim_msg_show( )<cr>
+" map <F5> :make!<cr><cr>:call Vim_msg_show( )<cr>
+" vmap <F5> <esc>:make!<cr><cr>:call Vim_msg_show( )<cr>
+" imap <F5> <esc>:make!<cr><cr>:call Vim_msg_show( )<cr>
 
 "map <F9> :Release<cr>
 "vmap <F9> <esc>:make!<cr>
@@ -171,7 +134,7 @@ imap <F5> <esc>:make!<cr><cr>:call Vim_msg_show( )<cr>
 "imap <F12> <esc>:!ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 
 " remap to JKL;
-noremap ' ;
+"noremap ' ;
 noremap ; l
 noremap l k
 noremap k j
@@ -205,4 +168,5 @@ let NERDTreeAutoDeleteBuffer = 1
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 
-
+let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
+let g:ycm_confirm_extra_conf = 1
