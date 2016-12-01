@@ -6,4 +6,5 @@ set incsearch
 set hlsearch
 set ignorecase
 set smartcase
-nnoremap jj <Esc>  
+"imap jj <Esc>
+

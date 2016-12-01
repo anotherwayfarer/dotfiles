@@ -117,6 +117,8 @@ assign [class="TelegramDesktop"] $ws4
 assign [title="^TeamViewer$"] $ws8
 assign [class="^Steam$"] $ws9
 assign [class="^Audacious"] $ws10
+assign [class="^Transmission-gtk"] $ws7
+assign [class="^VirtualBox"] $ws9
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -221,6 +223,6 @@ exec keepass2 #launch in scratchpad
 exec audacious
 exec urxvt -name scratchpad -e keepass2
 exec --no-startup-id i3-msg 'workspace $ws10; exec thunar /media/aim/Media/Music; move right; workspace $ws1'
-exec --no-startup-id i3-msg 'workspace $ws3; exec terminator -x vim +SimplenoteList; move right;workspace $ws1'
+exec --no-startup-id i3-msg 'workspace $ws3; exec gnome-terminal -x vim +SimplenoteList; move right;workspace $ws1'
 exec i3-sensible-terminal #in 1st workspace by default
 

@@ -43,4 +43,5 @@ alias cxx="g++ -Wall -Wextra -O2"
 alias c11="gcc --std=c11 -Wall -Wextra -O2"
 
 # fortune | cowsay -f $(ls /usr/share/cowsay/cows | shuf -n1)
+# curl wttr.in/Kirov
                                                                       
