@@ -1,8 +1,13 @@
 syntax enable
 " colorscheme darkblue
-colorscheme monokai
+" colorscheme monokai
+" colorscheme railscasts
+" colorscheme mustang
+colorscheme jellybeans
 
-filetype plugin indent on " indent depends on file type
+filetype off
+filetype plugin on
+filetype plugin indent on
 " set autoindent " copy indent length from prev line
 
 set tabstop=4 "show existing tab with 4 spaces
@@ -36,8 +41,7 @@ set winminwidth=0
 
 set laststatus=2 " always view status line 
 set showcmd " view current commands
-" command line format
-set statusline=%<%f%h%m%r%=format=%{&fileformat}\ file=%{&fileencoding}\ enc=%{&encoding}\ %b\ 0x%B\ %l,%c%V\ %P 
+"set statusline=%<%f%h%m%r%=format=%{&fileformat}\ file=%{&fileencoding}\ enc=%{&encoding}\ %b\ 0x%B\ %l,%c%V\ %P 
 autocmd BufEnter,BufWritePost ?* setlocal colorcolumn=101 " mark 101 column
 " set shortmess=+I " hide greeting window
 
@@ -47,6 +51,18 @@ autocmd BufEnter,BufWritePost ?* setlocal colorcolumn=101 " mark 101 column
 " ---------- SYSTEM ----------
 " set exrc " disable load non-default .vimrc
 " set secure " disable specific non-secure commands from non-default .vimrc
+
+set timeoutlen=500
+" exit visual mode
+set ttimeoutlen=0
+set encoding=UTF-8
+set termencoding=UTF-8
+set splitright
+set splitbelow
+set tags=./tags
+set cursorline
+" rowcount in popup window
+set pumheight=10
 
 set history=128
 set undolevels=512
@@ -61,13 +77,12 @@ set autochdir
 set fileencodings=utf-8,cp1251,koi8-r,cp866 " autodetection file types
 " set visualbell " disable beeps
 
-set pastetoggle=<F2>
 set clipboard=unnamed
 
 let mapleader = ","
 
 " ---------- KEYMAPPING ----------
-inoremap { {<CR>}<Esc>O
+inoremap { {}<Esc>i
 inoremap ( ()<Esc>i
 inoremap [ []<Esc>i
 
@@ -101,13 +116,17 @@ nmap ' :%s/\<<c-r>=expand("<cword>")<cr>\>/<c-r>=expand("<cword>")<cr>
 " fast search
 nmap \ /<c-r>=expand("<cword>")<cr> " fast replace ?
 
-map <F3> :mksession! ~/.vim/my_session<cr> " save session
-vmap <F3> <esc>:mksession! ~/.vim/my_session<cr>
-imap <F3> <esc>:mksession! ~/.vim/my_session<cr>
+" set pastetoggle=<F2>
+vmap <F3> y:call system("xclip -i -selection clipboard", getreg("\""))<CR>:call system("xclip -i", getreg("\""))<CR>
+nmap <F4> :call setreg("\"",system("xclip -o -selection clipboard"))<CR>p
 
-map <F4> :source ~/.vim/my_session<cr> " open session
-vmap <F4> <esc>:source ~/.vim/my_session<cr>
-imap <F4> <esc>:source ~/.vim/my_session<cr>
+" map <F3> :mksession! ~/.vim/my_session<cr> " save session
+" vmap <F3> <esc>:mksession! ~/.vim/my_session<cr>
+" imap <F3> <esc>:mksession! ~/.vim/my_session<cr>
+
+" map <F4> :source ~/.vim/my_session<cr> " open session
+" vmap <F4> <esc>:source ~/.vim/my_session<cr>
+" imap <F4> <esc>:source ~/.vim/my_session<cr>
 
 " F5 - make
 " function Vim_msg_show( )
@@ -149,11 +168,18 @@ noremap h <Nop>
 call plug#begin('~/.vim/plugged')
 Plug 'mrtazz/simplenote.vim'
 Plug 'scrooloose/nerdtree'
-" Plug 'ervandew/supertab'
-" Plug 'myint/clang_complete'
-" Plug 'justmao945/vim-clang'
+Plug 'matze/vim-move'
 Plug 'Valloric/YouCompleteMe'
 Plug 'tpope/vim-surround'
+Plug 'sirver/ultisnips'
+Plug 'easymotion/vim-easymotion'
+Plug 'xolox/vim-session'
+Plug 'xolox/vim-misc'
+Plug 'vim-syntastic/syntastic'
+Plug 'scrooloose/nerdcommenter'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'terryma/vim-multiple-cursors'
 call plug#end()
 
 " https://github.com/mrtazz/simplenote.vim 
@@ -163,10 +189,64 @@ let g:SimplenoteSortOrder = "title"
 nnoremap <Leader>s :SimplenoteList<Enter>
 
 nnoremap <Leader>f :NERDTreeToggle<Enter>
-let NERDTreeQuitOnOpen = 1
+" let NERDTreeQuitOnOpen = 1
 let NERDTreeAutoDeleteBuffer = 1
-let NERDTreeMinimalUI = 1
+" let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 
 let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
 let g:ycm_confirm_extra_conf = 1
+
+let g:move_key_modifier = 'C'
+
+let g:UltiSnipsExpandTrigger="<c-TAB>"
+" let g:UltiSnipsJumpForwardTrigger="<c-k>"
+" let g:UltiSnipsJumpBackwardTrigger="<c-l>"
+
+let g:session_autoload = 'yes'
+let g:session_autosave = 'yes'
+let g:session_autosave_periodic = 5
+let g:session_autosave_silent = 1
+" overwrite default
+let g:session_default_to_last = 1
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+" nerd commenter
+let g:NERDSpaceDelims = 1
+
+" airlines
+" solarized не входит в стандартную поставку, необходимо загрузить набор тем
+let g:airline_theme='solarized'
+" использовать пропатченные шрифты
+let g:airline_powerline_fonts = 1
+" включить управление табами
+let g:airline#extensions#tabline#enabled = 1
+" всегда показывать tabline
+let g:airline#extensions#tabline#tab_min_count = 0
+" такое же поведение, как и в sublime: если файл с уникальным именем - показывается только имя, если встречается файл с таким же именем, отображается также и директория
+let g:airline#extensions#tabline#formatter = 'unique_tail'
+" скрыть буферы
+let g:airline#extensions#tabline#show_buffers = 0
+" имя файла + расширение :help filename-modifiers
+let g:airline#extensions#tabline#fnamemod = ':t'
+" убираем раздражающие ненужные красные панели с предупреждениями или ошибками. Предупреждения, как по мне, не нужны, поскольку ругаются даже на trailing-spaces и разные отступы: например табы и пробелы (привет от phpDoc). Для ошибок и так открывается дополнительное окно. Впрочем, вам решать.
+let g:airline_section_warning = ''
+let g:airline_section_error = ''
+" убираем "X" для закрытия вкладки мышью (мышью!?)
+let g:airline#extensions#tabline#show_close_button = 0
+" убираем разделитель для вкладок
+let g:airline#extensions#tabline#left_alt_sep = ''
+" отключаем tagbar
+let g:airline#extensions#tagbar#enabled = 0
+" показывать номер вкладки
+let g:airline#extensions#tabline#show_tab_nr = 1
+" показывать только номер вкладки
+let g:airline#extensions#tabline#tab_nr_type = 1
+
