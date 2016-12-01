@@ -34,7 +34,7 @@ set laststatus=2 " always view status line
 set showcmd " view current commands
 " command line format
 set statusline=%<%f%h%m%r%=format=%{&fileformat}\ file=%{&fileencoding}\ enc=%{&encoding}\ %b\ 0x%B\ %l,%c%V\ %P 
-autocmd BufEnter,BufWritePost ?* setlocal colorcolumn=121 " mark 101 column
+autocmd BufEnter,BufWritePost ?* setlocal colorcolumn=101 " mark 101 column
 " set shortmess=+I " hide greeting window
 
 " You can replace all the tabs with spaces in the entire file with
@@ -66,13 +66,21 @@ let mapleader = ","
 noremap { {<CR>}<Esc>O<TAB>
 "inoremap ( (<Space><Space>)<Esc><Left>i
 "inoremap [ [<Space><Space>]<Esc><Left>i
-"imap <C-Space> <C-X><C-O>
+" inoremap <Nul> <C-n>
+" imap <C-Space> <C-n><C-p>
 imap <Ins> <Esc>i
+
+inoremap <expr> <C-Space> pumvisible() \|\| &omnifunc == '' ?
+            \ "\<lt>C-n>" :
+            \ "\<lt>C-x>\<lt>C-o><c-r>=pumvisible() ?" .
+            \ "\"\\<lt>c-n>\\<lt>c-p>\\<lt>c-n>\" :" .
+            \ "\" \\<lt>bs>\\<lt>C-n>\"\<CR>"
+imap <C-@> <C-Space>
 
 " fast motion
 " nmap <C-j> 8j
-nmap <C-k> 8k
-nmap <C-l> 8l
+" nmap <C-k> 8k
+" nmap <C-l> 8l
 " nmap <C-;> 8;
 
 " easier moving of code blocks
@@ -80,15 +88,15 @@ vnoremap < <gv  " better indentation
 vnoremap > >gv  " better indentation
 
 " improved Page Up/Down
-nmap <PageUp> <C-U><C-U>
-imap <PageUp> <C-O><C-U><C-O><C-U>
-nmap <PageDown> <C-D><C-D>
-imap <PageDown> <C-O><C-D><C-O><C-D>
+" nmap <PageUp> <C-U><C-U>
+" imap <PageUp> <C-O><C-U><C-O><C-U>
+" nmap <PageDown> <C-D><C-D>
+" imap <PageDown> <C-O><C-D><C-O><C-D>
 
 " save
-map <C-s> :w!<cr>
-vmap <C-s> <esc>:w!<cr>
-imap <C-s> <esc>:w!<cr>
+" map <C-s> :w!<cr>
+" vmap <C-s> <esc>:w!<cr>
+" imap <C-s> <esc>:w!<cr>
 
 " https://sheerun.net/2014/03/21/how-to-boost-your-vim-productivity/
 " nmap <Space><Space> V
@@ -163,6 +171,7 @@ imap <F5> <esc>:make!<cr><cr>:call Vim_msg_show( )<cr>
 "imap <F12> <esc>:!ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 
 " remap to JKL;
+noremap ' ;
 noremap ; l
 noremap l k
 noremap k j
@@ -177,8 +186,10 @@ noremap h <Nop>
 call plug#begin('~/.vim/plugged')
 Plug 'mrtazz/simplenote.vim'
 Plug 'scrooloose/nerdtree'
-Plug 'ervandew/supertab'
-Plug 'myint/clang_complete'
+" Plug 'ervandew/supertab'
+" Plug 'myint/clang_complete'
+" Plug 'justmao945/vim-clang'
+Plug 'Valloric/YouCompleteMe'
 Plug 'tpope/vim-surround'
 call plug#end()
 
@@ -194,4 +205,4 @@ let NERDTreeAutoDeleteBuffer = 1
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 
-let g:clang_library_path='/usr/lib/llvm-3.8/lib/'
+
