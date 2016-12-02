@@ -39,15 +39,24 @@ set mouse=a
 set winminheight=0 " window size
 set winminwidth=0
 
-set laststatus=2 " always view status line 
+set laststatus=2 " always view status line
 set showcmd " view current commands
-"set statusline=%<%f%h%m%r%=format=%{&fileformat}\ file=%{&fileencoding}\ enc=%{&encoding}\ %b\ 0x%B\ %l,%c%V\ %P 
-autocmd BufEnter,BufWritePost ?* setlocal colorcolumn=101 " mark 101 column
+set textwidth=100
+set comments=sl:/*,mb:\ *,elx:\ */
+
+" highlight column
+autocmd BufEnter,BufWritePost ?* setlocal colorcolumn=101  " mark 101 column
+" highlight text
+" highlight OverLength ctermbg=red ctermfg=white guibg=#9b59b6
+" match OverLength /\%101v.\+/
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$\| \+\ze\t/
+
 " set shortmess=+I " hide greeting window
 
 " You can replace all the tabs with spaces in the entire file with
-" > :%retab
 
+" > :%retab
 " ---------- SYSTEM ----------
 " set exrc " disable load non-default .vimrc
 " set secure " disable specific non-secure commands from non-default .vimrc
@@ -56,6 +65,7 @@ set timeoutlen=500
 " exit visual mode
 set ttimeoutlen=0
 set encoding=UTF-8
+set fenc=UTF-8
 set termencoding=UTF-8
 set splitright
 set splitbelow
@@ -64,6 +74,7 @@ set cursorline
 " rowcount in popup window
 set pumheight=10
 
+set showmatch " highlight matching braces
 set history=128
 set undolevels=512
 set undofile " save undo history to file
@@ -71,7 +82,7 @@ set undodir=$VIMDIR/undo/
 set nobackup
 set noswapfile
 " autocmd VimLeavePre * silent mksession ~/.vim/my_session " save session before close
-set nocompatible " with vi
+set nocompatible " disable vi compability
 set hidden " always keep buffer in memory
 set autochdir
 set fileencodings=utf-8,cp1251,koi8-r,cp866 " autodetection file types
@@ -86,6 +97,18 @@ inoremap { {}<Esc>i
 inoremap ( ()<Esc>i
 inoremap [ []<Esc>i
 
+" disable arrows
+noremap <Up> <Nop>
+noremap <Down> <Nop>
+noremap <Left> <Nop>
+noremap <Right> <Nop>
+
+" change window
+noremap <c-w>j <c-w><Left>
+noremap <c-w>k <c-w><Down>
+noremap <c-w>l <c-w><Up>
+noremap <c-w>; <c-w><Right>
+
 " easier moving of code blocks in visual mode
 vnoremap < <gv  " better indentation
 vnoremap > >gv  " better indentation
@@ -93,6 +116,7 @@ vnoremap > >gv  " better indentation
 " https://sheerun.net/2014/03/21/how-to-boost-your-vim-productivity/
 map q: :q
 inoremap jj <Esc>
+vnoremap jj <Esc>
 
 " buffers and tabs
 map <Leader>t :tabnew<cr>
@@ -117,21 +141,26 @@ nmap ' :%s/\<<c-r>=expand("<cword>")<cr>\>/<c-r>=expand("<cword>")<cr>
 nmap \ /<c-r>=expand("<cword>")<cr> " fast replace ?
 
 " set pastetoggle=<F2>
+" in normal mode F2 will save the file
+nmap <F2> :w<CR>
+" in insert mode F2 will exit insert, save, enters insert again
+imap <F2> <ESC>:w<CR>i
 vmap <F3> y:call system("xclip -i -selection clipboard", getreg("\""))<CR>:call system("xclip -i", getreg("\""))<CR>
 nmap <F4> :call setreg("\"",system("xclip -o -selection clipboard"))<CR>p
 
-" map <F3> :mksession! ~/.vim/my_session<cr> " save session
-" vmap <F3> <esc>:mksession! ~/.vim/my_session<cr>
-" imap <F3> <esc>:mksession! ~/.vim/my_session<cr>
+" map <F6> :Dox<CR>
+" build using makeprg with <F7>
+map <F7> :make<CR>
+" build using makeprg with <S-F7>
+map <S-F7> :make clean all<CR>
 
-" map <F4> :source ~/.vim/my_session<cr> " open session
-" vmap <F4> <esc>:source ~/.vim/my_session<cr>
-" imap <F4> <esc>:source ~/.vim/my_session<cr>
+" goto definition with F12
+map <F12> <C-]>
 
 " F5 - make
 " function Vim_msg_show( )
-" 	let s:vim_msg_state=1
-" 	botright copen
+"	let s:vim_msg_state=1
+"	botright copen
 " endfunction
 
 " map <F5> :make!<cr><cr>:call Vim_msg_show( )<cr>
@@ -147,7 +176,7 @@ nmap <F4> :call setreg("\"",system("xclip -o -selection clipboard"))<CR>p
 "imap <F11> <Esc>:TlistToggle<CR>
 "vmap <F11> <Esc>:TlistToggle<CR>
 
-" Ctrl+F12  - ctags 
+" Ctrl+F12  - ctags
 "map <C-F12> :!ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 "vmap <F12> <esc>:!ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 "imap <F12> <esc>:!ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
@@ -180,9 +209,12 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'terryma/vim-multiple-cursors'
+Plug 'vim-scripts/DoxygenToolkit.vim'
 call plug#end()
 
-" https://github.com/mrtazz/simplenote.vim 
+let g:DoxygenToolkit_authorName="Alexey Minchakov <lexaaim@gmail.com>"
+
+" https://github.com/mrtazz/simplenote.vim
 source ~/.simplenoterc
 let g:SimplenoteSortOrder = "title"
 
@@ -222,9 +254,7 @@ let g:syntastic_check_on_wq = 0
 let g:NERDSpaceDelims = 1
 
 " airlines
-" solarized не входит в стандартную поставку, необходимо загрузить набор тем
 let g:airline_theme='solarized'
-" использовать пропатченные шрифты
 let g:airline_powerline_fonts = 1
 " включить управление табами
 let g:airline#extensions#tabline#enabled = 1
