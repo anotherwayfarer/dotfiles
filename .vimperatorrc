@@ -6,7 +6,8 @@ set incsearch
 set hlsearch
 set ignorecase
 set smartcase
-"imap jj <Esc>
+
+set hintchars=asdfjkl;
 
 let mapleader = ","
 

@@ -42,6 +42,8 @@ alias cxx11="g++ --std=c++11 -pthread -Wall -Wextra -O2"
 alias cxx="g++ -Wall -Wextra -O2"
 alias c11="gcc --std=c11 -Wall -Wextra -O2"
 
+alias begincoding="cd ~/Dev/\!Projects/Maze && vim src/main.cpp"
+
 # fortune | cowsay -f $(ls /usr/share/cowsay/cows | shuf -n1)
 # curl wttr.in/Kirov
                                                                       
