@@ -31,10 +31,10 @@ bindsym $mod+l focus up
 bindsym $mod+semicolon focus right
 
 # alternatively, you can use the cursor keys:
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
+# bindsym $mod+Left focus left
+# bindsym $mod+Down focus down
+# bindsym $mod+Up focus up
+# bindsym $mod+Right focus right
 
 # move focused window
 bindsym $mod+Shift+j move left
@@ -43,10 +43,10 @@ bindsym $mod+Shift+l move up
 bindsym $mod+Shift+semicolon move right
 
 # alternatively, you can use the cursor keys:
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
+# bindsym $mod+Shift+Left move left
+# bindsym $mod+Shift+Down move down
+# bindsym $mod+Shift+Up move up
+# bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
 bindsym $mod+h split h
@@ -121,12 +121,12 @@ assign [class="^Transmission-gtk"] $ws7
 assign [class="^VirtualBox"] $ws9
 
 # reload the configuration file
-bindsym $mod+Shift+c reload
+# bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 
 # exit i3 (logs you out of your X session)
-#bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+# bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 bindsym $mod+Shift+e exec "/home/aim/.config/i3/scripts/exit_menu"
 
 # resize window (you can also use the mouse for that)
@@ -137,10 +137,10 @@ mode "resize" {
         bindsym semicolon resize grow width 4 px or 4 ppt
 
         # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 4 px or 4 ppt
-        bindsym Down resize grow height 4 px or 4 ppt
-        bindsym Up resize shrink height 4 px or 4 ppt
-        bindsym Right resize grow width 4 px or 4 ppt
+#        bindsym Left resize shrink width 4 px or 4 ppt
+#        bindsym Down resize grow height 4 px or 4 ppt
+#        bindsym Up resize shrink height 4 px or 4 ppt
+#        bindsym Right resize grow width 4 px or 4 ppt
 
         # back to normal: Enter or Escape
         bindsym Return mode "default"
@@ -148,11 +148,10 @@ mode "resize" {
 }
 
 bindsym $mod+r mode "resize"
-
 for_window [class="$"] border none
 
 # scratchpad
-bindsym $mod+m move scratchpad
+# bindsym $mod+m move scratchpad
 bindsym $mod+o scratchpad show
 for_window [class="KeePass2"] move to scratchpad
 # for_window [class="TeamViewer"] floating enable
@@ -194,7 +193,7 @@ bar {
         position bottom
         tray_output none #primary
 #        font pango:DejaVu Sans Mono 11
-        separator_symbol "|"
+        separator_symbol " "
         workspace_buttons yes
         strip_workspace_numbers no
 
@@ -223,6 +222,6 @@ exec keepass2 #launch in scratchpad
 exec audacious
 exec urxvt -name scratchpad -e keepass2
 exec --no-startup-id i3-msg 'workspace $ws10; exec thunar /media/aim/Media/Music; move right; workspace $ws1'
-exec --no-startup-id i3-msg 'workspace $ws3; exec gnome-terminal -x vim +SimplenoteList; move right;workspace $ws1'
+# exec --no-startup-id i3-msg 'workspace $ws3; exec gnome-terminal -x vim +SimplenoteList; move right;workspace $ws1'
 exec i3-sensible-terminal #in 1st workspace by default
 
