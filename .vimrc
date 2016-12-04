@@ -93,9 +93,9 @@ set clipboard=unnamed
 let mapleader = ","
 
 " ---------- KEYMAPPING ----------
-inoremap { {}<Esc>i
-inoremap ( ()<Esc>i
-inoremap [ []<Esc>i
+" inoremap { {}<Esc>i
+" inoremap ( ()<Esc>i
+" inoremap [ []<Esc>i
 
 " disable arrows
 noremap <Up> <Nop>
@@ -135,6 +135,14 @@ map <Leader>c :tabclose<cr>
 nmap <Leader>c :tabclose<cr>
 imap <Leader>c <esc>:tabclose<cr>i
 
+map <Leader>l :lopen<cr> " open locations
+nmap <Leader>l :lopen<cr>
+imap <Leader>l :lopen<cr>
+
+map <Leader>q :lclose<cr> " close locations
+nmap <Leader>q :lclose<cr>
+imap <Leader>q <esc>:lclose<cr>
+
 " fast replace
 nmap ' :%s/\<<c-r>=expand("<cword>")<cr>\>/<c-r>=expand("<cword>")<cr>
 " fast search
@@ -154,8 +162,9 @@ map <F7> :make<CR>
 " build using makeprg with <S-F7>
 map <S-F7> :make clean all<CR>
 
-" goto definition with F12
-map <F12> <C-]>
+map <F6> :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR> " toggle cpp/h files
+map <F8> :%s/\s\+$//e<CR> " remove trailing spaces
+map <F12> <C-]> " goto definition with F12
 
 " F5 - make
 " function Vim_msg_show( )
