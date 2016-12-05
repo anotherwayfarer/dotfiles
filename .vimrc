@@ -13,11 +13,11 @@ filetype plugin indent on
 set tabstop=4 "show existing tab with 4 spaces
 set shiftwidth=4 " add 4 spaces with '>'
 set shiftround " round multiple of four
-set expandtab
-let _curfile = expand("%:t")
-if _curfile =~ "Makefile" || _curfile =~ "makefile" || _curfile =~ ".*\.mk"
-set noexpandtab " don't replace tabs with places when it's makefile
-endif
+set noexpandtab
+" let _curfile = expand("%:t")
+" if _curfile =~ "Makefile" || _curfile =~ "makefile" || _curfile =~ ".*\.mk"
+" set noexpandtab " don't replace tabs with places when it's makefile
+" endif
 
 set list
 set listchars=tab:>- " show tabs
@@ -92,6 +92,8 @@ set clipboard=unnamed
 
 let mapleader = ","
 
+autocmd BufWritePre * %s/\s\+$//e
+
 " ---------- KEYMAPPING ----------
 " inoremap { {}<Esc>i
 " inoremap ( ()<Esc>i
@@ -121,27 +123,27 @@ vnoremap jj <Esc>
 " buffers and tabs
 map <Leader>t :tabnew<cr>
 nmap <Leader>t :tabnew<cr>
-imap <Leader>t <esc>:tabnew<cr>i
+" imap <Leader>t <esc>:tabnew<cr>i
 
 map <Leader>p :tabp<cr>
 nmap <Leader>p :tabp<cr>
-imap <Leader>p <esc>:tabp<cr>i
+" imap <Leader>p <esc>:tabp<cr>i
 
 map <Leader>n :tabn<cr>
 nmap <Leader>n :tabn<cr>
-imap <Leader>n <esc>:tabn<cr>i
+" imap <Leader>n <esc>:tabn<cr>i
 
 map <Leader>c :tabclose<cr>
 nmap <Leader>c :tabclose<cr>
-imap <Leader>c <esc>:tabclose<cr>i
+" imap <Leader>c <esc>:tabclose<cr>i
 
 map <Leader>l :lopen<cr> " open locations
 nmap <Leader>l :lopen<cr>
-imap <Leader>l :lopen<cr>
+" imap <Leader>l :lopen<cr>
 
 map <Leader>q :lclose<cr> " close locations
 nmap <Leader>q :lclose<cr>
-imap <Leader>q <esc>:lclose<cr>
+" imap <Leader>q <esc>:lclose<cr>
 
 " fast replace
 nmap ' :%s/\<<c-r>=expand("<cword>")<cr>\>/<c-r>=expand("<cword>")<cr>
@@ -163,7 +165,6 @@ map <F7> :make<CR>
 map <S-F7> :make clean all<CR>
 
 map <F6> :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR> " toggle cpp/h files
-map <F8> :%s/\s\+$//e<CR> " remove trailing spaces
 map <F12> <C-]> " goto definition with F12
 
 " F5 - make
@@ -223,7 +224,6 @@ call plug#end()
 
 let g:DoxygenToolkit_authorName="Alexey Minchakov <lexaaim@gmail.com>"
 
-" https://github.com/mrtazz/simplenote.vim
 source ~/.simplenoterc
 let g:SimplenoteSortOrder = "title"
 
