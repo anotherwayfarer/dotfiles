@@ -3,17 +3,19 @@ syntax enable
 " colorscheme monokai
 " colorscheme railscasts
 " colorscheme mustang
-colorscheme jellybeans
+" colorscheme jellybeans
+colorscheme smyck
 
 filetype off
 filetype plugin on
 filetype plugin indent on
 " set autoindent " copy indent length from prev line
 
+set softtabstop=4
 set tabstop=4 "show existing tab with 4 spaces
 set shiftwidth=4 " add 4 spaces with '>'
 set shiftround " round multiple of four
-set noexpandtab
+set expandtab
 " let _curfile = expand("%:t")
 " if _curfile =~ "Makefile" || _curfile =~ "makefile" || _curfile =~ ".*\.mk"
 " set noexpandtab " don't replace tabs with places when it's makefile
@@ -112,13 +114,13 @@ noremap <c-w>l <c-w><Up>
 noremap <c-w>; <c-w><Right>
 
 " easier moving of code blocks in visual mode
-vnoremap < <gv  " better indentation
-vnoremap > >gv  " better indentation
+" vnoremap < <gv  " better indentation
+" vnoremap > >gv  " better indentation
 
 " https://sheerun.net/2014/03/21/how-to-boost-your-vim-productivity/
 map q: :q
 inoremap jj <Esc>
-vnoremap jj <Esc>
+" vnoremap jj <Esc>
 
 " buffers and tabs
 map <Leader>t :tabnew<cr>
@@ -133,8 +135,8 @@ map <Leader>n :tabn<cr>
 nmap <Leader>n :tabn<cr>
 " imap <Leader>n <esc>:tabn<cr>i
 
-map <Leader>c :tabclose<cr>
-nmap <Leader>c :tabclose<cr>
+" map <Leader>c :tabclose<cr>
+" nmap <Leader>c :tabclose<cr>
 " imap <Leader>c <esc>:tabclose<cr>i
 
 map <Leader>l :lopen<cr> " open locations
@@ -146,9 +148,9 @@ nmap <Leader>q :lclose<cr>
 " imap <Leader>q <esc>:lclose<cr>
 
 " fast replace
-nmap ' :%s/\<<c-r>=expand("<cword>")<cr>\>/<c-r>=expand("<cword>")<cr>
+nmap \ :%s/\<<c-r>=expand("<cword>")<cr>\>/<c-r>=expand("<cword>")<cr>
 " fast search
-nmap \ /<c-r>=expand("<cword>")<cr> " fast replace ?
+" nmap \ /<c-r>=expand("<cword>")<cr> " fast replace ?
 
 " set pastetoggle=<F2>
 " in normal mode F2 will save the file
@@ -192,7 +194,7 @@ map <F12> <C-]> " goto definition with F12
 "imap <F12> <esc>:!ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 
 " remap to JKL;
-"noremap ' ;
+noremap ' ;
 noremap ; l
 noremap l k
 noremap k j
@@ -205,6 +207,8 @@ noremap h <Nop>
 " ----- ----- PLUGINS ----- -----
 " vim-plug plugin manager
 call plug#begin('~/.vim/plugged')
+" Plug 'tpope/vim-commentary'
+Plug 'scrooloose/nerdcommenter'
 Plug 'mrtazz/simplenote.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'matze/vim-move'
@@ -215,11 +219,10 @@ Plug 'easymotion/vim-easymotion'
 Plug 'xolox/vim-session'
 Plug 'xolox/vim-misc'
 Plug 'vim-syntastic/syntastic'
-Plug 'scrooloose/nerdcommenter'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'terryma/vim-multiple-cursors'
-Plug 'vim-scripts/DoxygenToolkit.vim'
+" Plug 'vim-scripts/DoxygenToolkit.vim'
 call plug#end()
 
 let g:DoxygenToolkit_authorName="Alexey Minchakov <lexaaim@gmail.com>"
@@ -259,33 +262,42 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
-" nerd commenter
+" Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
+" Use compact syntax for prettified multi-line comments
+let g:NERDCompactSexyComs = 1
+" Align line-wise comment delimiters flush left instead of following code indentation
+let g:NERDDefaultAlign = 'left'
+" Set a language to use its alternate delimiters by default
+let g:NERDAltDelims_java = 1
+" Add your own custom formats or override the defaults
+let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
+" Allow commenting and inverting empty lines (useful when commenting a region)
+let g:NERDCommentEmptyLines = 1
+" Enable trimming of trailing whitespace when uncommenting
+let g:NERDTrimTrailingWhitespace = 1
 
 " airlines
 let g:airline_theme='solarized'
 let g:airline_powerline_fonts = 1
-" включить управление табами
+" enable tab management
 let g:airline#extensions#tabline#enabled = 1
-" всегда показывать tabline
+" always show tabline
 let g:airline#extensions#tabline#tab_min_count = 0
-" такое же поведение, как и в sublime: если файл с уникальным именем - показывается только имя, если встречается файл с таким же именем, отображается также и директория
 let g:airline#extensions#tabline#formatter = 'unique_tail'
-" скрыть буферы
 let g:airline#extensions#tabline#show_buffers = 0
-" имя файла + расширение :help filename-modifiers
+" show file extension
 let g:airline#extensions#tabline#fnamemod = ':t'
-" убираем раздражающие ненужные красные панели с предупреждениями или ошибками. Предупреждения, как по мне, не нужны, поскольку ругаются даже на trailing-spaces и разные отступы: например табы и пробелы (привет от phpDoc). Для ошибок и так открывается дополнительное окно. Впрочем, вам решать.
 let g:airline_section_warning = ''
 let g:airline_section_error = ''
-" убираем "X" для закрытия вкладки мышью (мышью!?)
+" disable closing tab with mouse
 let g:airline#extensions#tabline#show_close_button = 0
-" убираем разделитель для вкладок
+" disable separator
 let g:airline#extensions#tabline#left_alt_sep = ''
-" отключаем tagbar
+" disable tagbar
 let g:airline#extensions#tagbar#enabled = 0
-" показывать номер вкладки
+" show tab number
 let g:airline#extensions#tabline#show_tab_nr = 1
-" показывать только номер вкладки
+" show only tab number
 let g:airline#extensions#tabline#tab_nr_type = 1
 
