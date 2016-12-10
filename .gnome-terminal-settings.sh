@@ -4,7 +4,7 @@
 
 PRGUID="$(dconf list /org/gnome/terminal/legacy/profiles:/ | gawk 'NR==2')"
 
-dconf write /org/gnome/terminal/legacy/profiles:/${PRGUID}foreground-color "'rgb(236,240,241)'"
+dconf write /org/gnome/terminal/legacy/profiles:/${PRGUID}foreground-color "'rgb(247,247,247)'"
 dconf write /org/gnome/terminal/legacy/profiles:/${PRGUID}visible-name "'Aim1'"
 dconf write /org/gnome/terminal/legacy/profiles:/${PRGUID}login-shell "false"
 # palette: black, red, green, yellow, blue, magenta, cyan, white, bold black, bold red, etc
@@ -14,7 +14,8 @@ dconf write /org/gnome/terminal/legacy/profiles:/${PRGUID}login-shell "false"
 dconf write /org/gnome/terminal/legacy/profiles:/${PRGUID}palette "['rgb(47,47,47)', 'rgb(199,86,70)', 'rgb(142,179,59)', 'rgb(208,176,60)', 'rgb(114,179,204)', 'rgb(200,160,209)', 'rgb(33,134,147)', 'rgb(176,176,176)', 'rgb(93,93,93)', 'rgb(224,150,144)', 'rgb(205,238,105)', 'rgb(255,227,119)', 'rgb(156,217,240)', 'rgb(251,177,249)', 'rgb(119,223,216)', 'rgb(247,247,247)']"
 dconf write /org/gnome/terminal/legacy/profiles:/${PRGUID}default-size-columns "100"
 dconf write /org/gnome/terminal/legacy/profiles:/${PRGUID}default-size-rows "40"
-dconf write /org/gnome/terminal/legacy/profiles:/${PRGUID}font "'DejaVu Sans Mono 12'"
+# dconf write /org/gnome/terminal/legacy/profiles:/${PRGUID}font "'DejaVu Sans Mono 12'"
+dconf write /org/gnome/terminal/legacy/profiles:/${PRGUID}font "'Monaco Regular 12'"
 dconf write /org/gnome/terminal/legacy/profiles:/${PRGUID}use-system-font "false"
 dconf write /org/gnome/terminal/legacy/profiles:/${PRGUID}use-custom-command "false"
 dconf write /org/gnome/terminal/legacy/profiles:/${PRGUID}use-theme-colors "false"

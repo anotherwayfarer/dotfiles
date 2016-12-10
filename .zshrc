@@ -46,4 +46,3 @@ alias begincoding="cd ~/Dev/\!Projects/Maze && vim src/main.cpp"
 
 # fortune | cowsay -f $(ls /usr/share/cowsay/cows | shuf -n1)
 # curl wttr.in/Kirov
-                                                                      

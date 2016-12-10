@@ -6,20 +6,14 @@ syntax enable
 " colorscheme jellybeans
 colorscheme smyck
 
-filetype off
-filetype plugin on
 filetype plugin indent on
-" set autoindent " copy indent length from prev line
+runtime macros/matchit.vim " enable if-else match search by pressing %
 
 set softtabstop=4
 set tabstop=4 "show existing tab with 4 spaces
 set shiftwidth=4 " add 4 spaces with '>'
 set shiftround " round multiple of four
-set expandtab
-" let _curfile = expand("%:t")
-" if _curfile =~ "Makefile" || _curfile =~ "makefile" || _curfile =~ ".*\.mk"
-" set noexpandtab " don't replace tabs with places when it's makefile
-" endif
+set expandtab " <c-v>Tab - for Tab
 
 set list
 set listchars=tab:>- " show tabs
@@ -46,26 +40,21 @@ set showcmd " view current commands
 set textwidth=100
 set comments=sl:/*,mb:\ *,elx:\ */
 
-" highlight column
 autocmd BufEnter,BufWritePost ?* setlocal colorcolumn=101  " mark 101 column
-" highlight text
-" highlight OverLength ctermbg=red ctermfg=white guibg=#9b59b6
-" match OverLength /\%101v.\+/
-highlight ExtraWhitespace ctermbg=red guibg=red
+highlight ExtraWhitespace ctermbg=red guibg=red " hl on file opening
 match ExtraWhitespace /\s\+$\| \+\ze\t/
 
 " set shortmess=+I " hide greeting window
 
 " You can replace all the tabs with spaces in the entire file with
-
 " > :%retab
+
 " ---------- SYSTEM ----------
 " set exrc " disable load non-default .vimrc
 " set secure " disable specific non-secure commands from non-default .vimrc
 
 set timeoutlen=500
-" exit visual mode
-set ttimeoutlen=0
+set ttimeoutlen=0 " exit visual mode
 set encoding=UTF-8
 set fenc=UTF-8
 set termencoding=UTF-8
@@ -73,8 +62,7 @@ set splitright
 set splitbelow
 set tags=./tags
 set cursorline
-" rowcount in popup window
-set pumheight=10
+set pumheight=10 " rowcount in popup window
 
 set showmatch " highlight matching braces
 set history=128
@@ -83,23 +71,28 @@ set undofile " save undo history to file
 set undodir=$VIMDIR/undo/
 set nobackup
 set noswapfile
-" autocmd VimLeavePre * silent mksession ~/.vim/my_session " save session before close
 set nocompatible " disable vi compability
-set hidden " always keep buffer in memory
+set hidden " enable change buffer without save
 set autochdir
 set fileencodings=utf-8,cp1251,koi8-r,cp866 " autodetection file types
-" set visualbell " disable beeps
 
 set clipboard=unnamed
 
 let mapleader = ","
 
-autocmd BufWritePre * %s/\s\+$//e
+autocmd BufWritePre * %s/\s\+$//e " delete whitespaces on writing
 
 " ---------- KEYMAPPING ----------
-" inoremap { {}<Esc>i
-" inoremap ( ()<Esc>i
-" inoremap [ []<Esc>i
+" enable russian keyboard layout mapping
+" so ~/.vimrussianrc
+
+" remap to JKL;
+noremap ' ;
+noremap ; l
+noremap l k
+noremap k j
+noremap j h
+noremap h <Nop>
 
 " disable arrows
 noremap <Up> <Nop>
@@ -108,65 +101,53 @@ noremap <Left> <Nop>
 noremap <Right> <Nop>
 
 " change window
-noremap <c-w>j <c-w><Left>
-noremap <c-w>k <c-w><Down>
-noremap <c-w>l <c-w><Up>
-noremap <c-w>; <c-w><Right>
+noremap <c-w>j <c-w>h
+noremap <c-w>k <c-w>j
+noremap <c-w>l <c-w>k
+noremap <c-w>; <c-w>l
 
-" easier moving of code blocks in visual mode
-" vnoremap < <gv  " better indentation
-" vnoremap > >gv  " better indentation
+" screen lines
+noremap gl gk
+noremap gk gj
 
-" https://sheerun.net/2014/03/21/how-to-boost-your-vim-productivity/
 map q: :q
 inoremap jj <Esc>
-" vnoremap jj <Esc>
 
 " buffers and tabs
 map <Leader>t :tabnew<cr>
-nmap <Leader>t :tabnew<cr>
-" imap <Leader>t <esc>:tabnew<cr>i
+nmap <" Leader>t :tabnew<cr>
 
-map <Leader>p :tabp<cr>
-nmap <Leader>p :tabp<cr>
-" imap <Leader>p <esc>:tabp<cr>i
-
-map <Leader>n :tabn<cr>
-nmap <Leader>n :tabn<cr>
-" imap <Leader>n <esc>:tabn<cr>i
-
-" map <Leader>c :tabclose<cr>
-" nmap <Leader>c :tabclose<cr>
-" imap <Leader>c <esc>:tabclose<cr>i
+map <Leader>c :tabclose<cr>
+nmap <Leader>c :tabclose<cr>
 
 map <Leader>l :lopen<cr> " open locations
 nmap <Leader>l :lopen<cr>
-" imap <Leader>l :lopen<cr>
 
 map <Leader>q :lclose<cr> " close locations
 nmap <Leader>q :lclose<cr>
-" imap <Leader>q <esc>:lclose<cr>
 
 " fast replace
 nmap \ :%s/\<<c-r>=expand("<cword>")<cr>\>/<c-r>=expand("<cword>")<cr>
-" fast search
-" nmap \ /<c-r>=expand("<cword>")<cr> " fast replace ?
 
-" set pastetoggle=<F2>
-" in normal mode F2 will save the file
+" F2 save the file
 nmap <F2> :w<CR>
-" in insert mode F2 will exit insert, save, enters insert again
 imap <F2> <ESC>:w<CR>i
+
+" F3 copy to clipboard
 vmap <F3> y:call system("xclip -i -selection clipboard", getreg("\""))<CR>:call system("xclip -i", getreg("\""))<CR>
+" F4 paste from clipboard
 nmap <F4> :call setreg("\"",system("xclip -o -selection clipboard"))<CR>p
 
 " map <F6> :Dox<CR>
-" build using makeprg with <F7>
-map <F7> :make<CR>
-" build using makeprg with <S-F7>
-map <S-F7> :make clean all<CR>
 
-map <F6> :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR> " toggle cpp/h files
+" build using makeprg with <F7>
+map <F7> :!make<CR>
+" build using makeprg with <S-F7>
+map <S-F7> :!make clean all<CR>
+
+" F6 toggle .cpp / .h files
+map <F6> :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
+
 map <F12> <C-]> " goto definition with F12
 
 " F5 - make
@@ -192,18 +173,7 @@ map <F12> <C-]> " goto definition with F12
 "map <C-F12> :!ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 "vmap <F12> <esc>:!ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 "imap <F12> <esc>:!ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
-
-" remap to JKL;
-noremap ' ;
-noremap ; l
-noremap l k
-noremap k j
-noremap j h
-noremap h <Nop>
-
-" enable russian keyboard layout mapping
-" so ~/.vimrussianrc
-
+"
 " ----- ----- PLUGINS ----- -----
 " vim-plug plugin manager
 call plug#begin('~/.vim/plugged')
@@ -213,7 +183,9 @@ Plug 'mrtazz/simplenote.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'matze/vim-move'
 Plug 'Valloric/YouCompleteMe'
+Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-surround'
+
 Plug 'sirver/ultisnips'
 Plug 'easymotion/vim-easymotion'
 Plug 'xolox/vim-session'
