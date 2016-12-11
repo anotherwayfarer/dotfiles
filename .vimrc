@@ -9,11 +9,16 @@ colorscheme smyck
 filetype plugin indent on
 runtime macros/matchit.vim " enable if-else match search by pressing %
 
+" tab settings
 set softtabstop=4
 set tabstop=4 "show existing tab with 4 spaces
 set shiftwidth=4 " add 4 spaces with '>'
 set shiftround " round multiple of four
-set expandtab " <c-v>Tab - for Tab
+set expandtab " always replace Tab with Spaces. Use <c-v><Tab>
+
+" case settings
+set ignorecase
+set smartcase
 
 set list
 set listchars=tab:>- " show tabs
@@ -31,7 +36,7 @@ set scrolljump=1 " srolling offsets
 set scrolloff=5
 set sidescroll=5
 
-set mouse=a
+set mouse=a " enable mouse
 set winminheight=0 " window size
 set winminwidth=0
 
@@ -44,14 +49,14 @@ autocmd BufEnter,BufWritePost ?* setlocal colorcolumn=101  " mark 101 column
 highlight ExtraWhitespace ctermbg=red guibg=red " hl on file opening
 match ExtraWhitespace /\s\+$\| \+\ze\t/
 
-" set shortmess=+I " hide greeting window
+" set shortmess=a
 
 " You can replace all the tabs with spaces in the entire file with
 " > :%retab
 
 " ---------- SYSTEM ----------
-" set exrc " disable load non-default .vimrc
-" set secure " disable specific non-secure commands from non-default .vimrc
+set exrc " enable load non-default .vimrc
+set secure " disable specific non-secure commands from non-default .vimrc
 
 set timeoutlen=500
 set ttimeoutlen=0 " exit visual mode
@@ -60,7 +65,6 @@ set fenc=UTF-8
 set termencoding=UTF-8
 set splitright
 set splitbelow
-set tags=./tags
 set cursorline
 set pumheight=10 " rowcount in popup window
 
@@ -73,7 +77,7 @@ set nobackup
 set noswapfile
 set nocompatible " disable vi compability
 set hidden " enable change buffer without save
-set autochdir
+" set autochdir
 set fileencodings=utf-8,cp1251,koi8-r,cp866 " autodetection file types
 
 set clipboard=unnamed
@@ -85,6 +89,8 @@ autocmd BufWritePre * %s/\s\+$//e " delete whitespaces on writing
 " ---------- KEYMAPPING ----------
 " enable russian keyboard layout mapping
 " so ~/.vimrussianrc
+
+nnoremap <c-s> <Nop>
 
 " remap to JKL;
 noremap ' ;
@@ -113,6 +119,9 @@ noremap gk gj
 map q: :q
 inoremap jj <Esc>
 
+nnoremap & :&&<CR>
+xnoremap & :&&<CR>
+
 " buffers and tabs
 map <Leader>t :tabnew<cr>
 nmap <" Leader>t :tabnew<cr>
@@ -138,101 +147,88 @@ vmap <F3> y:call system("xclip -i -selection clipboard", getreg("\""))<CR>:call 
 " F4 paste from clipboard
 nmap <F4> :call setreg("\"",system("xclip -o -selection clipboard"))<CR>p
 
-" map <F6> :Dox<CR>
+" map <F5> <esc>:!ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
+
+map <F6> :Dox<CR>
 
 " build using makeprg with <F7>
-map <F7> :!make<CR>
+map <F7> :make<CR><CR>
 " build using makeprg with <S-F7>
-map <S-F7> :!make clean all<CR>
+map <S-F7> :make clean all<CR><CR>
 
-" F6 toggle .cpp / .h files
-map <F6> :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
+" toggle .cpp / .h files
+map <F12> :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
 
-map <F12> <C-]> " goto definition with F12
-
-" F5 - make
-" function Vim_msg_show( )
-"	let s:vim_msg_state=1
-"	botright copen
-" endfunction
-
-" map <F5> :make!<cr><cr>:call Vim_msg_show( )<cr>
-" vmap <F5> <esc>:make!<cr><cr>:call Vim_msg_show( )<cr>
-" imap <F5> <esc>:make!<cr><cr>:call Vim_msg_show( )<cr>
-
-"map <F9> :Release<cr>
-"vmap <F9> <esc>:make!<cr>
-"imap <F9> <esc>:make!<cr>
-
-" F11 - Tag List
-"map <F11> :TlistToggle<CR>
-"imap <F11> <Esc>:TlistToggle<CR>
-"vmap <F11> <Esc>:TlistToggle<CR>
-
-" Ctrl+F12  - ctags
-"map <C-F12> :!ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
-"vmap <F12> <esc>:!ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
-"imap <F12> <esc>:!ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
-"
 " ----- ----- PLUGINS ----- -----
 " vim-plug plugin manager
 call plug#begin('~/.vim/plugged')
+" Plug 'Valloric/YouCompleteMe'
+" Plug 'easymotion/vim-easymotion'
+" Plug 'sirver/ultisnips'
+" Plug 'terryma/vim-multiple-cursors'
 " Plug 'tpope/vim-commentary'
-Plug 'scrooloose/nerdcommenter'
-Plug 'mrtazz/simplenote.vim'
-Plug 'scrooloose/nerdtree'
+" Plug 'vim-syntastic/syntastic'
+" Plug 'xolox/vim-misc'
+" Plug 'xolox/vim-session'
 Plug 'matze/vim-move'
-Plug 'Valloric/YouCompleteMe'
-Plug 'tpope/vim-unimpaired'
+Plug 'mrtazz/simplenote.vim'
+Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdtree'
+Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-surround'
-
-Plug 'sirver/ultisnips'
-Plug 'easymotion/vim-easymotion'
-Plug 'xolox/vim-session'
-Plug 'xolox/vim-misc'
-Plug 'vim-syntastic/syntastic'
+Plug 'tpope/vim-unimpaired'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'terryma/vim-multiple-cursors'
-" Plug 'vim-scripts/DoxygenToolkit.vim'
+Plug 'vim-scripts/DoxygenToolkit.vim'
+" Plug 'vim-scripts/OmniCppComplete'
+Plug 'Shougo/neocomplete.vim'
+Plug 'Shougo/neosnippet.vim'
+Plug 'Shougo/neosnippet-snippets'
 call plug#end()
 
-let g:DoxygenToolkit_authorName="Alexey Minchakov <lexaaim@gmail.com>"
+" ctags
+" set tags=./tags,tags
+" set tags+=~/.vim/tags/cpp
+" set tags+=~/.vim/tags/gl
+" set tags+=~/.vim/tags/sdl2
+" set tags+=~/.vim/tags/qt4
+
+" let &path.="src/include,/usr/include/AL,"
 
 source ~/.simplenoterc
 let g:SimplenoteSortOrder = "title"
 
 nnoremap <Leader>s :SimplenoteList<Enter>
-
 nnoremap <Leader>f :NERDTreeToggle<Enter>
+
 " let NERDTreeQuitOnOpen = 1
 let NERDTreeAutoDeleteBuffer = 1
 " let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 
-let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
-let g:ycm_confirm_extra_conf = 1
+" let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
+" let g:ycm_confirm_extra_conf = 1
 
 let g:move_key_modifier = 'C'
 
-let g:UltiSnipsExpandTrigger="<c-TAB>"
+" let g:UltiSnipsExpandTrigger="<c-TAB>"
 " let g:UltiSnipsJumpForwardTrigger="<c-k>"
 " let g:UltiSnipsJumpBackwardTrigger="<c-l>"
 
-let g:session_autoload = 'yes'
-let g:session_autosave = 'yes'
-let g:session_autosave_periodic = 5
-let g:session_autosave_silent = 1
+" let g:session_autoload = 'yes'
+" let g:session_autosave = 'yes'
+" let g:session_autosave_periodic = 5
+" let g:session_autosave_silent = 1
 " overwrite default
-let g:session_default_to_last = 1
+" let g:session_default_to_last = 1
 
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
+" let g:syntastic_check_on_open = 1
+" let g:syntastic_check_on_wq = 0
 
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
@@ -273,3 +269,81 @@ let g:airline#extensions#tabline#show_tab_nr = 1
 " show only tab number
 let g:airline#extensions#tabline#tab_nr_type = 1
 
+let g:DoxygenToolkit_briefTag_pre="@Synopsis  "
+let g:DoxygenToolkit_paramTag_pre="@Param "
+let g:DoxygenToolkit_returnTag="@Returns   "
+let g:DoxygenToolkit_blockHeader="--------------------------------------------------------------------------"
+let g:DoxygenToolkit_blockFooter="----------------------------------------------------------------------------"
+let g:DoxygenToolkit_authorName="Alexey Minchakov <lexaaim@gmail.com>"
+let g:DoxygenToolkit_licenseTag="My own license"
+
+
+" Disable AutoComplPop.
+let g:acp_enableAtStartup = 0
+" Use neocomplete.
+let g:neocomplete#enable_at_startup = 1
+" Use smartcase.
+let g:neocomplete#enable_smart_case = 1
+" Set minimum syntax keyword length.
+let g:neocomplete#sources#syntax#min_keyword_length = 3
+
+" Define dictionary.
+let g:neocomplete#sources#dictionary#dictionaries = {
+    \ 'default' : '',
+    \ 'vimshell' : $HOME.'/.vimshell_hist',
+    \ 'scheme' : $HOME.'/.gosh_completions'
+        \ }
+
+" Define keyword.
+if !exists('g:neocomplete#keyword_patterns')
+    let g:neocomplete#keyword_patterns = {}
+endif
+let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+
+" Plugin key-mappings.
+inoremap <expr><C-g>     neocomplete#undo_completion()
+inoremap <expr><C-l>     neocomplete#complete_common_string()
+
+" Recommended key-mappings.
+" <CR>: close popup and save indent.
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+  return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
+  " For no inserting <CR> key.
+  "return pumvisible() ? "\<C-y>" : "\<CR>"
+endfunction
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+" Close popup by <Space>.
+"inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
+
+" AutoComplPop like behavior.
+"let g:neocomplete#enable_auto_select = 1
+
+" Shell like behavior(not recommended).
+"set completeopt+=longest
+"let g:neocomplete#enable_auto_select = 1
+"let g:neocomplete#disable_auto_complete = 1
+"inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
+
+" Enable omni completion.
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+" Enable heavy omni completion.
+if !exists('g:neocomplete#sources#omni#input_patterns')
+  let g:neocomplete#sources#omni#input_patterns = {}
+endif
+"let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+"let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+
+" For perlomni.vim setting.
+" https://github.com/c9s/perlomni.vim
+" let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'

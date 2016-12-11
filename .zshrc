@@ -44,5 +44,6 @@ alias c11="gcc --std=c11 -Wall -Wextra -O2"
 
 alias begincoding="cd ~/Dev/\!Projects/Maze && vim src/main.cpp"
 
+stty -ixon
 # fortune | cowsay -f $(ls /usr/share/cowsay/cows | shuf -n1)
 # curl wttr.in/Kirov
