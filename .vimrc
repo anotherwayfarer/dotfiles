@@ -129,14 +129,11 @@ nmap <" Leader>t :tabnew<cr>
 map <Leader>c :tabclose<cr>
 nmap <Leader>c :tabclose<cr>
 
-map <Leader>l :lopen<cr> " open locations
-nmap <Leader>l :lopen<cr>
-
-map <Leader>q :lclose<cr> " close locations
-nmap <Leader>q :lclose<cr>
-
 " fast replace
 nmap \ :%s/\<<c-r>=expand("<cword>")<cr>\>/<c-r>=expand("<cword>")<cr>
+
+" Doxygen
+map <F1> :Dox<CR>
 
 " F2 save the file
 nmap <F2> :w<CR>
@@ -147,17 +144,6 @@ vmap <F3> y:call system("xclip -i -selection clipboard", getreg("\""))<CR>:call 
 " F4 paste from clipboard
 nmap <F4> :call setreg("\"",system("xclip -o -selection clipboard"))<CR>p
 
-" map <F5> <esc>:!ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
-
-map <F6> :Dox<CR>
-
-" build using makeprg with <F7>
-map <F7> :make<CR><CR>
-" build using makeprg with <S-F7>
-map <S-F7> :make clean all<CR><CR>
-
-" toggle .cpp / .h files
-map <F12> :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
 
 " ----- ----- PLUGINS ----- -----
 " vim-plug plugin manager
@@ -167,9 +153,13 @@ call plug#begin('~/.vim/plugged')
 " Plug 'sirver/ultisnips'
 " Plug 'terryma/vim-multiple-cursors'
 " Plug 'tpope/vim-commentary'
+" Plug 'vim-scripts/OmniCppComplete'
 " Plug 'vim-syntastic/syntastic'
 " Plug 'xolox/vim-misc'
 " Plug 'xolox/vim-session'
+Plug 'Shougo/neocomplete.vim'
+Plug 'Shougo/neosnippet-snippets'
+Plug 'Shougo/neosnippet.vim'
 Plug 'matze/vim-move'
 Plug 'mrtazz/simplenote.vim'
 Plug 'scrooloose/nerdcommenter'
@@ -180,25 +170,12 @@ Plug 'tpope/vim-unimpaired'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-scripts/DoxygenToolkit.vim'
-" Plug 'vim-scripts/OmniCppComplete'
-Plug 'Shougo/neocomplete.vim'
-Plug 'Shougo/neosnippet.vim'
-Plug 'Shougo/neosnippet-snippets'
 call plug#end()
-
-" ctags
-" set tags=./tags,tags
-" set tags+=~/.vim/tags/cpp
-" set tags+=~/.vim/tags/gl
-" set tags+=~/.vim/tags/sdl2
-" set tags+=~/.vim/tags/qt4
-
-" let &path.="src/include,/usr/include/AL,"
 
 source ~/.simplenoterc
 let g:SimplenoteSortOrder = "title"
-
 nnoremap <Leader>s :SimplenoteList<Enter>
+
 nnoremap <Leader>f :NERDTreeToggle<Enter>
 
 " let NERDTreeQuitOnOpen = 1
@@ -206,14 +183,7 @@ let NERDTreeAutoDeleteBuffer = 1
 " let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 
-" let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
-" let g:ycm_confirm_extra_conf = 1
-
 let g:move_key_modifier = 'C'
-
-" let g:UltiSnipsExpandTrigger="<c-TAB>"
-" let g:UltiSnipsJumpForwardTrigger="<c-k>"
-" let g:UltiSnipsJumpBackwardTrigger="<c-l>"
 
 " let g:session_autoload = 'yes'
 " let g:session_autosave = 'yes'
