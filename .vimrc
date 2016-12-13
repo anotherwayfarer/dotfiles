@@ -57,6 +57,7 @@ match ExtraWhitespace /\s\+$\| \+\ze\t/
 " ---------- SYSTEM ----------
 set exrc " enable load non-default .vimrc
 set secure " disable specific non-secure commands from non-default .vimrc
+set spelllang=en
 
 set timeoutlen=500
 set ttimeoutlen=0 " exit visual mode
@@ -170,7 +171,17 @@ Plug 'tpope/vim-unimpaired'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-scripts/DoxygenToolkit.vim'
+" Plug 'antoyo/vim-licenses'
+Plug 'alpertuna/vim-header'
 call plug#end()
+
+let g:header_field_author = 'Alexey Minchakov'
+let g:header_field_author_email = 'lexaaim@gmail.com'
+
+
+let g:licenses_copyright_holders_name = 'Alexey Minchakov <lexaaim@gmail.com>'
+"let g:licenses_authors_name = 'Alexey Minchakov <lexaaim@gmail.com>'
+let g:licenses_default_commands = ['gpl', 'mit' ]
 
 source ~/.simplenoterc
 let g:SimplenoteSortOrder = "title"
@@ -182,6 +193,7 @@ nnoremap <Leader>f :NERDTreeToggle<Enter>
 let NERDTreeAutoDeleteBuffer = 1
 " let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
+let NERDTreeShowHidden=1
 
 let g:move_key_modifier = 'C'
 
@@ -245,8 +257,8 @@ let g:DoxygenToolkit_returnTag="@Returns   "
 let g:DoxygenToolkit_blockHeader="--------------------------------------------------------------------------"
 let g:DoxygenToolkit_blockFooter="----------------------------------------------------------------------------"
 let g:DoxygenToolkit_authorName="Alexey Minchakov <lexaaim@gmail.com>"
-let g:DoxygenToolkit_licenseTag="My own license"
-
+let g:DoxygenToolkit_licenseTag="WTFPLv2 License"
+let g:DoxygenToolkit_versionString="1.0"
 
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0

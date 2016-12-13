@@ -1,5 +1,5 @@
 [user]
-	name = Alexey Minchakov 
+	name = Alexey Minchakov
 	email = lexaaim@gmail.com
 [alias]
 	lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(red)%h%C(reset) - %C(cyan)%aD%C(reset) %C(green)(%ar)%C(reset)%C(yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(bold blue)- %an%C(reset)' --all
@@ -11,3 +11,7 @@
 	st = status
 	unstage = reset HEAD --
 	last = log -1 HEAD
+[core]
+	autocrlf = input
+	editor = vim
+	whitespace = trailing-space,space-before-tab

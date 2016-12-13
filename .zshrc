@@ -31,6 +31,7 @@ alias restart="sudo restart now"
 alias i3conf="vim ~/.config/i3/config"
 alias vimrc="vim ~/.vimrc"
 alias zshrc="vim ~/.zshrc"
+alias vimcpprc="vim ~/.vim/after/ftplugin/cpp.vim"
 
 alias ls='ls -F1 --color=auto'
 alias ll='ls -laFh'
