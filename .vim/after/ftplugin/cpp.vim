@@ -1,9 +1,7 @@
-" source $HOME/.vimrc
-
-" map <F5> <esc>:!ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
+map <F5> <esc>:!ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 
 " ctags
-" set tags=./tags,tags
+set tags=./tags,tags
 " set tags+=~/.vim/tags/cpp
 " set tags+=~/.vim/tags/gl
 " set tags+=~/.vim/tags/sdl2

@@ -118,6 +118,7 @@ noremap gl gk
 noremap gk gj
 
 map q: :q
+map :W :w
 inoremap jj <Esc>
 
 nnoremap & :&&<CR>
@@ -172,6 +173,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-scripts/DoxygenToolkit.vim'
 " Plug 'antoyo/vim-licenses'
+Plug 'justmao945/vim-clang'
 Plug 'alpertuna/vim-header'
 call plug#end()
 
@@ -182,6 +184,10 @@ let g:header_field_author_email = 'lexaaim@gmail.com'
 let g:licenses_copyright_holders_name = 'Alexey Minchakov <lexaaim@gmail.com>'
 "let g:licenses_authors_name = 'Alexey Minchakov <lexaaim@gmail.com>'
 let g:licenses_default_commands = ['gpl', 'mit' ]
+
+
+let g:clang_c_options = '-std=gnu11'
+let g:clang_cpp_options = '-std=c++14 -stdlib=libstdc++'
 
 source ~/.simplenoterc
 let g:SimplenoteSortOrder = "title"
