@@ -39,8 +39,9 @@ alias zip='zip -9'
 alias gzip='gzip -9'
 alias bzip2='bzip2 -9'
 
-alias cxx11="g++ --std=c++11 -pthread -Wall -Wextra -O2"
-alias cxx="g++ -Wall -Wextra -O2"
+alias cl++14="g++ --std=c++14 -pthread -Wall -Wextra -O2"
+alias g++14="g++ --std=c++14 -pthread -Wall -Wextra -O2"
+alias g++03="g++ -Wall -Wextra -O2"
 alias c11="gcc --std=c11 -Wall -Wextra -O2"
 
 alias begincoding="cd ~/Dev/\!Projects/Maze && vim src/main.cpp"

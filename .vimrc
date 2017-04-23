@@ -8,6 +8,7 @@ colorscheme smyck
 
 filetype plugin indent on
 runtime macros/matchit.vim " enable if-else match search by pressing %
+set fileformat=unix
 
 " tab settings
 set softtabstop=4
@@ -94,12 +95,12 @@ autocmd BufWritePre * %s/\s\+$//e " delete whitespaces on writing
 nnoremap <c-s> <Nop>
 
 " remap to JKL;
-noremap ' ;
-noremap ; l
-noremap l k
-noremap k j
-noremap j h
-noremap h <Nop>
+" noremap ' ;
+" noremap ; l
+" noremap l k
+" noremap k j
+" noremap j h
+" noremap h <Nop>
 
 " disable arrows
 noremap <Up> <Nop>
@@ -108,14 +109,14 @@ noremap <Left> <Nop>
 noremap <Right> <Nop>
 
 " change window
-noremap <c-w>j <c-w>h
-noremap <c-w>k <c-w>j
-noremap <c-w>l <c-w>k
-noremap <c-w>; <c-w>l
+" noremap <c-w>j <c-w>h
+" noremap <c-w>k <c-w>j
+" noremap <c-w>l <c-w>k
+" noremap <c-w>; <c-w>l
 
 " screen lines
-noremap gl gk
-noremap gk gj
+" noremap gl gk
+" noremap gk gj
 
 map q: :q
 map :W :w
@@ -270,6 +271,8 @@ let g:DoxygenToolkit_versionString="1.0"
 let g:acp_enableAtStartup = 0
 " Use neocomplete.
 let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#enable_auto_select = 0
+
 " Use smartcase.
 let g:neocomplete#enable_smart_case = 1
 " Set minimum syntax keyword length.

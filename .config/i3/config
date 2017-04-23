@@ -6,6 +6,7 @@ set $mod Mod4
 # is used in the bar {} block below.
 #font pango:monospace 8
 font pango:System San Francisco Display 12
+# font pango:System San Francisco Display 10 # bar
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -20,15 +21,16 @@ bindsym $mod+Shift+q kill
 #bindsym $mod+d exec dmenu_run
 bindsym $mod+d exec rofi -show run -lines 6 -eh 2 -width 100 -padding 400 -opacity "85" -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd" -font "System San Francisco Display 18"
 
+
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file.
 bindsym $mod+shift+d exec --no-startup-id i3-dmenu-desktop
 
 # change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+semicolon focus right
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
 
 # alternatively, you can use the cursor keys:
 # bindsym $mod+Left focus left
@@ -37,10 +39,10 @@ bindsym $mod+semicolon focus right
 # bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+semicolon move right
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
 
 # alternatively, you can use the cursor keys:
 # bindsym $mod+Shift+Left move left
@@ -49,7 +51,7 @@ bindsym $mod+Shift+semicolon move right
 # bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+h split h
+bindsym $mod+Shift+v split h
 
 # split in vertical orientation
 bindsym $mod+v split v
@@ -75,9 +77,11 @@ bindsym $mod+a focus parent
 #bindsym $mod+shift+x exec i3lock
 
 set $ws1 "1 Editor "
-set $ws2 "2 FireFox "
-set $ws3 "3 Notepad "
-set $ws4 "4 Chat "
+# set $ws2 "2 FireFox "
+set $ws2 "2 Chrome "
+# set $ws3 "3 Notepad "
+set $ws3 "3 Chat "
+set $ws4 "4 "
 set $ws5 "5 "
 set $ws6 "6 "
 set $ws7 "7 "
@@ -110,10 +114,10 @@ bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
 # workspace assignment (use "xprop")
-# assign [class="^Google-chrome$"] $ws2
-assign [class="^Firefox$"] $ws2
-assign [class="^Simplenote$"] $ws3
-assign [class="TelegramDesktop"] $ws4
+assign [class="^Google-chrome$"] $ws2
+# assign [class="^Firefox$"] $ws2
+# assign [class="^Simplenote$"] $ws3
+assign [class="TelegramDesktop"] $ws3
 assign [title="^TeamViewer$"] $ws8
 assign [class="^Steam$"] $ws9
 assign [class="^Audacious"] $ws10
@@ -131,10 +135,10 @@ bindsym $mod+Shift+e exec "/home/aim/.config/i3/scripts/exit_menu"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
-        bindsym j resize shrink width 4 px or 4 ppt
-        bindsym k resize grow height 4 px or 4 ppt
-        bindsym l resize shrink height 4 px or 4 ppt
-        bindsym semicolon resize grow width 4 px or 4 ppt
+        bindsym h resize shrink width 4 px or 4 ppt
+        bindsym j resize grow height 4 px or 4 ppt
+        bindsym k resize shrink height 4 px or 4 ppt
+        bindsym l resize grow width 4 px or 4 ppt
 
         # same bindings, but for the arrow keys
 #        bindsym Left resize shrink width 4 px or 4 ppt
@@ -214,14 +218,15 @@ exec_always --no-startup-id feh --bg-fill ~/Pictures/mywall.png
 exec_always compton -f
 
 # autostart
-exec firefox
+#exec firefox
+exec google-chrome
 exec ~/Downloads/Telegram/Telegram
 #for_window [title="^Telegram$"] resize shrink width 400px
-#exec /usr/share/simplenote/simplenote
+# exec /usr/share/simplenote/simplenote
 exec keepass2 #launch in scratchpad
-exec audacious
 exec urxvt -name scratchpad -e keepass2
-exec --no-startup-id i3-msg 'workspace $ws10; exec thunar /media/aim/Media/Music; move right; workspace $ws1'
+exec audacious
+# exec --no-startup-id i3-msg 'workspace $ws10; exec thunar /media/aim/Media/Music; move right; workspace $ws1'
 # exec --no-startup-id i3-msg 'workspace $ws3; exec gnome-terminal -x vim +SimplenoteList; move right;workspace $ws1'
 exec i3-sensible-terminal #in 1st workspace by default
 

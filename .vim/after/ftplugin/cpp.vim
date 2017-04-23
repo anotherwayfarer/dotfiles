@@ -2,10 +2,15 @@ map <F5> <esc>:!ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q .<CR
 
 " ctags
 set tags=./tags,tags
-" set tags+=~/.vim/tags/cpp
-" set tags+=~/.vim/tags/gl
-" set tags+=~/.vim/tags/sdl2
+set tags+=~/.vim/tags/cpp
+set tags+=~/.vim/tags/gl
+set tags+=~/.vim/tags/sdl2
 " set tags+=~/.vim/tags/qt4
+
+" ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q /usr/include/c++/5.4.0/
+" mv tags cpp
+" ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q /usr/include/SDL2/
+" mv tags sdl2
 
 " let &path.="src/include,/usr/include/AL,"
 " build using makeprg with <F7>
