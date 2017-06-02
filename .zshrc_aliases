@@ -1,0 +1,25 @@
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+alias shutdown="sudo shutdown now"
+alias restart="sudo restart now"
+
+alias i3conf="vim ~/.config/i3/config"
+alias vimrc="vim ~/.vimrc"
+alias zshrc="vim ~/.zshrc"
+alias vimcpprc="vim ~/.vim/after/ftplugin/cpp.vim"
+alias tmuxconf="vim ~/.tmux.conf"
+
+alias ls='ls -F1 --color=auto'
+alias ll='ls -laFh'
+alias zip='zip -9'
+alias gzip='gzip -9'
+alias bzip2='bzip2 -9'
+
+alias cl++14="g++ --std=c++14 -pthread -Wall -Wextra -O2"
+alias g++14="g++ --std=c++14 -pthread -Wall -Wextra -O2"
+alias g++03="g++ -Wall -Wextra -O2"
+alias c11="gcc --std=c11 -Wall -Wextra -O2"
+alias make='make -j$(nproc)'
+
+alias begincoding="cd ~/Dev/\!Projects/Maze && vim src/main.cpp"
