@@ -177,6 +177,7 @@ Plug 'vim-scripts/DoxygenToolkit.vim'
 " Plug 'antoyo/vim-licenses'
 Plug 'justmao945/vim-clang'
 Plug 'alpertuna/vim-header'
+Plug 'tmux-plugins/vim-tmux'
 call plug#end()
 
 let g:header_field_author = 'Alexey Minchakov'
