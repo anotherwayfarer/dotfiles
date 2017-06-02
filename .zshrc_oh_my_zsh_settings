@@ -1,8 +1,7 @@
 export ZSH=/home/aim/.oh-my-zsh
 ZSH_THEME="agnoster"
 
-plugins=(git nvm ssh-agent history jump extract gitignore)
-plugins=(git nvm colorize ssh-agent tmux history jump extract gitignore)
+plugins=(git colorize ssh-agent tmux history jump extract gitignore)
 
 DISABLE_UPDATE_PROMPT=true
 DISABLE_AUTO_UPDATE=true
