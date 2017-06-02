@@ -43,8 +43,10 @@ alias cl++14="g++ --std=c++14 -pthread -Wall -Wextra -O2"
 alias g++14="g++ --std=c++14 -pthread -Wall -Wextra -O2"
 alias g++03="g++ -Wall -Wextra -O2"
 alias c11="gcc --std=c11 -Wall -Wextra -O2"
+alias make='make -j$(nproc)'
 
 alias begincoding="cd ~/Dev/\!Projects/Maze && vim src/main.cpp"
+
 
 stty -ixon
 # fortune | cowsay -f $(ls /usr/share/cowsay/cows | shuf -n1)
