@@ -51,4 +51,4 @@ stty -ixon
 
 source ~/.zshrc_aliases
 source ~/.zshrc_fg_shortcut
-source ~/.zshrc_git_prompt
+source ~/.zshrc_git_prompt2
