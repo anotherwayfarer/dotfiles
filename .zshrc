@@ -8,6 +8,8 @@ export ZSH=$HOME/.oh-my-zsh
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 # ZSH_THEME="robbyrussell"
+# ZSH_THEME="adben"
+# ZSH_THEME="lambda"
 ZSH_THEME="agnoster"
 
 DISABLE_UPDATE_PROMPT="true"
@@ -39,7 +41,7 @@ HIST_STAMPS="dd.mm.yyyy"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git colorize ssh-agent tmux history jump extract gitignore)
+plugins=(git colorize ssh-agent tmux history jump gitignore)
 
 source $ZSH/oh-my-zsh.sh
 
