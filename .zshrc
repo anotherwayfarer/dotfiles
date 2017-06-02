@@ -2,7 +2,11 @@
 export ZSH=/home/aim/.oh-my-zsh
 ZSH_THEME="agnoster"
 
-plugins=(git nvm colorize ssh-agent tmux history jump extract gitignore)
+plugins=(git nvm ssh-agent history jump extract gitignore)
+# plugins=(git nvm colorize ssh-agent tmux history jump extract gitignore)
+
+DISABLE_UPDATE_PROMPT=true
+DISABLE_AUTO_UPDATE=true
 
 source $ZSH/oh-my-zsh.sh
 #export PATH="/home/aim/bin:/home/aim/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin"
@@ -21,6 +25,7 @@ fancy-ctrl-z () {
 }
 zle -N fancy-ctrl-z
 bindkey '^Z' fancy-ctrl-z
+
 
 alias ...="cd ../.."
 alias ....="cd ../../.."
@@ -47,7 +52,6 @@ alias make='make -j$(nproc)'
 
 alias begincoding="cd ~/Dev/\!Projects/Maze && vim src/main.cpp"
 
-
 stty -ixon
 # fortune | cowsay -f $(ls /usr/share/cowsay/cows | shuf -n1)
-# curl wttr.in/Kirov
+curl wttr.in/Kirov
