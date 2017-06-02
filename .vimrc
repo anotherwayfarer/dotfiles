@@ -5,6 +5,7 @@ syntax enable
 " colorscheme mustang
 " colorscheme jellybeans
 colorscheme smyck
+" colorscheme desert
 
 filetype plugin indent on
 runtime macros/matchit.vim " enable if-else match search by pressing %

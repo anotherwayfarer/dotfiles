@@ -1,5 +1,46 @@
-# https://github.com/bookercodes/dotfiles/blob/ubuntu/.zshrc
-export ZSH=/home/aim/.oh-my-zsh
+# DEFAULT CONFIGURATION
+# Set up the prompt
+
+autoload -Uz promptinit
+promptinit
+prompt adam1
+
+setopt histignorealldups sharehistory
+
+# Use emacs keybindings even if our EDITOR is set to vi
+bindkey -e
+
+# Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
+HISTSIZE=5000
+SAVEHIST=5000
+HISTFILE=~/.zsh_history
+
+# Use modern completion system
+autoload -Uz compinit
+compinit
+
+zstyle ':completion:*' auto-description 'specify: %d'
+zstyle ':completion:*' completer _expand _complete _correct _approximate
+zstyle ':completion:*' format 'Completing %d'
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*' menu select=2
+eval "$(dircolors -b)"
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' list-colors ''
+zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
+zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=* l:|=*'
+zstyle ':completion:*' menu select=long
+zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
+zstyle ':completion:*' use-compctl false
+zstyle ':completion:*' verbose true
+
+zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
+zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
+
+
+# MY CUSTOMIZATION
+
+# export ZSH=/home/aim/.oh-my-zsh
 ZSH_THEME="agnoster"
 
 plugins=(git nvm ssh-agent history jump extract gitignore)
@@ -8,8 +49,8 @@ plugins=(git nvm ssh-agent history jump extract gitignore)
 DISABLE_UPDATE_PROMPT=true
 DISABLE_AUTO_UPDATE=true
 
-source $ZSH/oh-my-zsh.sh
-#export PATH="/home/aim/bin:/home/aim/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin"
+# source $ZSH/oh-my-zsh.sh
+# export PATH="/home/aim/bin:/home/aim/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin"
 
 export LANG=en_US.UTF-8
 
@@ -37,6 +78,7 @@ alias i3conf="vim ~/.config/i3/config"
 alias vimrc="vim ~/.vimrc"
 alias zshrc="vim ~/.zshrc"
 alias vimcpprc="vim ~/.vim/after/ftplugin/cpp.vim"
+alias tmuxconf="vim ~/.tmux.conf"
 
 alias ls='ls -F1 --color=auto'
 alias ll='ls -laFh'
@@ -52,6 +94,12 @@ alias make='make -j$(nproc)'
 
 alias begincoding="cd ~/Dev/\!Projects/Maze && vim src/main.cpp"
 
+# disable ^s ^f commands
 stty -ixon
 # fortune | cowsay -f $(ls /usr/share/cowsay/cows | shuf -n1)
-curl wttr.in/Kirov
+# curl wttr.in/Kirov
+
+
+# launch tmux
+# if [ "$TMUX" = "" ]; then tmux; fi
+

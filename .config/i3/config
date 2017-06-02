@@ -12,8 +12,9 @@ font pango:System San Francisco Display 12
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-# start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+# start a terminal and launch the tmux
+bindsym $mod+Return exec i3-sensible-terminal -e tmux
+bindsym $mod+Shift+Return exec i3-sensible-terminal
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -234,5 +235,5 @@ exec urxvt -name scratchpad -e keepass2
 exec audacious
 # exec --no-startup-id i3-msg 'workspace $ws10; exec thunar /media/aim/Media/Music; move right; workspace $ws1'
 # exec --no-startup-id i3-msg 'workspace $ws3; exec gnome-terminal -x vim +SimplenoteList; move right;workspace $ws1'
-exec i3-sensible-terminal #in 1st workspace by default
+exec i3-sensible-terminal -e tmux #in 1st workspace by default
 
