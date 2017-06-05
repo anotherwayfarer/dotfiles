@@ -56,7 +56,9 @@ export LANG=en_US.UTF-8
 # export ARCHFLAGS="-arch x86_64"
 
 # ssh
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
+export SSH_KEY_PATH="~/.ssh/"
+zstyle :omz:plugins:ssh-agent identities id_rsa
+# zstyle :omz:plugins:ssh-agent identities id_rsa id_rsa2 id_github
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -68,3 +70,6 @@ export LANG=en_US.UTF-8
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 source ~/.zshrc_aliases
 source ~/.zshrc_fg_shortcut
+
+stty stop undef
+stty start undef
