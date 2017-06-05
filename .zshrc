@@ -1,16 +1,10 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-# Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
-# Set name of the theme to load. Optionally, if you set this to "random"
-# it'll load a random theme each time that oh-my-zsh is loaded.
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-# ZSH_THEME="robbyrussell"
-# ZSH_THEME="adben"
-# ZSH_THEME="lambda"
-ZSH_THEME="agnoster"
+# ZSH_THEME="agnoster"
+ZSH_THEME="my_theme"
 
 DISABLE_UPDATE_PROMPT="true"
 DISABLE_AUTO_UPDATE="true"
@@ -29,9 +23,6 @@ DISABLE_AUTO_UPDATE="true"
 # much, much faster.
 # DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 HIST_STAMPS="dd.mm.yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
@@ -41,15 +32,16 @@ HIST_STAMPS="dd.mm.yyyy"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git colorize ssh-agent tmux history jump gitignore)
+plugins=(git ssh-agent tmux chucknorris encode64)
+# plugins=(git colorize ssh-agent jump tmux history gitignore shrink-path)
+ZSH_TMUX_AUTOCONNECT="true"
+ZSH_TMUX_AUTOQUIT="false"
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
 export LANG=en_US.UTF-8
 
 # Compilation flags
@@ -57,7 +49,7 @@ export LANG=en_US.UTF-8
 
 # ssh
 export SSH_KEY_PATH="~/.ssh/"
-zstyle :omz:plugins:ssh-agent identities id_rsa
+zstyle :omz:plugins:ssh-agent identities id_github id_bitbucket
 # zstyle :omz:plugins:ssh-agent identities id_rsa id_rsa2 id_github
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
@@ -71,5 +63,13 @@ zstyle :omz:plugins:ssh-agent identities id_rsa
 source ~/.zshrc_aliases
 source ~/.zshrc_fg_shortcut
 
+# setopt prompt_subst
+# PS1='%n@%m $(shrink_path -f)>'
+
+# fortune -s | cowsay -f default
+# curl wttr.in/Kirov
+chuck_cow
+
+stty -ixon
 stty stop undef
 stty start undef

@@ -1,5 +1,5 @@
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
-
+# set $TERMINAL=terminator
 set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
@@ -220,7 +220,7 @@ bar {
 
 # before autostart
 # exec --no-startup-id pactl upload-sample ~/.i3/that_was_easy.wav that_was_easy
-exec --no-startup-id ~/.config/i3/beforestart
+# exec --no-startup-id source ~/.config/i3/beforestart.sh
 exec_always --no-startup-id feh --bg-fill ~/Pictures/mywall.png
 exec_always compton -f
 
