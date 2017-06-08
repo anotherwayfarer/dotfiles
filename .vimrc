@@ -91,7 +91,7 @@ autocmd BufWritePre * %s/\s\+$//e " delete whitespaces on writing
 
 " ---------- KEYMAPPING ----------
 " enable russian keyboard layout mapping
-" so ~/.vimrussianrc
+" so ~/.vimrc_russian
 
 nnoremap <c-s> <Nop>
 

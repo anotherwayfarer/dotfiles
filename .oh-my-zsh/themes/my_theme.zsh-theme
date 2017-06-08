@@ -124,7 +124,7 @@ prompt_git() {
     zstyle ':vcs_info:*' formats ' %u%c'
     zstyle ':vcs_info:*' actionformats ' %u%c'
     vcs_info
-    echo -n "${ref/refs\/heads\//$PL_BRANCH_CHAR }${vcs_info_msg_0_%% }${mode}"
+    echo -n "${ref/refs\/heads\// $PL_BRANCH_CHAR }${vcs_info_msg_0_%% }${mode}"
   fi
 }
 
@@ -193,7 +193,7 @@ prompt_dir() {
 # prompt_segment blue black '%12>...>%2~%<<%10<<%2~%<<'
 # prompt_segment blue black '%11>...>%2~%<<%10<<%2~%<<'
 # %(4~|.../%3~|%~)
-prompt_segment blue black '%25<...<%~%<<'
+prompt_segment blue black '%30<...<%2~%<<'
 }
 
 # Virtualenv: current working virtualenv
