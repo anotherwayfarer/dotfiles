@@ -120,6 +120,7 @@ noremap <Right> <Nop>
 " noremap gk gj
 
 map q: :q
+map :Q :q
 map :W :w
 inoremap jj <Esc>
 

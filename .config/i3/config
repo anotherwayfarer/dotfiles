@@ -142,10 +142,10 @@ bindsym $mod+Shift+e exec "/home/aim/.config/i3/scripts/exit_menu"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
-        bindsym l resize shrink width 4 px or 4 ppt
+        bindsym h resize shrink width 4 px or 4 ppt
         bindsym j resize grow height 4 px or 4 ppt
         bindsym k resize shrink height 4 px or 4 ppt
-        bindsym h resize grow width 4 px or 4 ppt
+        bindsym l resize grow width 4 px or 4 ppt
 
         # same bindings, but for the arrow keys
 #        bindsym Left resize shrink width 4 px or 4 ppt
