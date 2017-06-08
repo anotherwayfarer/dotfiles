@@ -1,5 +1,3 @@
-# disable screensaver
-#xset s off
-#xset -dpms
-#xset s noblank
-export TERMINAL=/usr/bin/urxvt
+# exec i3 -V >> ~/i3log-$(date +'%F-%k-%M-%S') 2>&1
+[[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources
+
