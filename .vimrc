@@ -166,7 +166,7 @@ Plug 'Shougo/neocomplete.vim'
 Plug 'Shougo/neosnippet-snippets'
 Plug 'Shougo/neosnippet.vim'
 Plug 'matze/vim-move'
-Plug 'mrtazz/simplenote.vim'
+" Plug 'mrtazz/simplenote.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-abolish'
@@ -193,9 +193,9 @@ let g:licenses_default_commands = ['gpl', 'mit' ]
 let g:clang_c_options = '-std=gnu11'
 let g:clang_cpp_options = '-std=c++14 -stdlib=libstdc++'
 
-source ~/.simplenoterc
-let g:SimplenoteSortOrder = "title"
-nnoremap <Leader>s :SimplenoteList<Enter>
+" source ~/.simplenoterc
+" let g:SimplenoteSortOrder = "title"
+" nnoremap <Leader>s :SimplenoteList<Enter>
 
 nnoremap <Leader>f :NERDTreeToggle<Enter>
 

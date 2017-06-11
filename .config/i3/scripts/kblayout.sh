@@ -1,6 +1,6 @@
 #!/bin/sh
 
-VARKL="$(~/DevTools/xkblayout-state print %s | tr [a-z] [A-Z])"
+VARKL="$(xkblayout-state print %s | tr [a-z] [A-Z])"
 echo $VARKL
 echo $VARKL
 case "$VARKL" in
