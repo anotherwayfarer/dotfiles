@@ -1,5 +1,6 @@
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
-# set $TERMINAL=terminator
+# terminal /usr/bin/urxvt
+
 set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
@@ -8,30 +9,34 @@ set $mod Mod4
 font pango:System San Francisco Display 12
 # font pango:DejaVu Sans Mono 12
 # font pango:System San Francisco Display 10 # bar
-
 # Use Mouse+$mod to drag floating windows to their wanted position
+
 floating_modifier $mod
 
+# set $screencast  ffmpeg -y -f x11grab -video_size 1280x800 -i :0.0 -f alsa -i default -c:v ffvhuff -r 30 -c:a flac output.mkv
+# set $audio ffmpeg -f alsa -i default -c:a flac -y output.flac
+
 # start a terminal and launch the tmux
-bindsym $mod+Return exec i3-sensible-terminal -e "tmux -u"
+bindsym $mod+Return exec i3-sensible-terminal -e tmux -u
 bindsym $mod+Shift+Return exec i3-sensible-terminal
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
+bindsym $mod+Shift+BackSpace exec reboot
+#
 # start dmenu (a program launcher)
 #bindsym $mod+d exec dmenu_run
 # bindsym $mod+d exec rofi -show run -lines 6 -eh 2 -width 100 -padding 400 -opacity "85" -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd" -font "System San Francisco Display 18"
 bindsym $mod+d exec rofi -show run
+# There also is the (new) i3-dmenu-desktop which only displays applications
+# shipping a .desktop file.
+bindsym $mod+shift+d exec --no-startup-id i3-dmenu-desktop
 
 # scrot & gimp - root
 bindsym Print exec scrot -e 'mv $f /tmp/ && gimp /tmp/$f'
 # scrot & gimp - select window or rectangle
 bindsym Mod1+Print exec scrot -s -e 'mv $f /tmp/ && gimp /tmp/$f'
-
-# There also is the (new) i3-dmenu-desktop which only displays applications
-# shipping a .desktop file.
-bindsym $mod+shift+d exec --no-startup-id i3-dmenu-desktop
 
 # change focus
 bindsym $mod+h focus left
@@ -71,18 +76,18 @@ bindsym $mod+a focus parent
 # i3lock
 #bindsym $mod+shift+x exec i3lock
 
-set $ws1 "1 Editor "
+set $ws1 "1 "
 # set $ws2 "2 FireFox "
-set $ws2 "2 Chrome "
+set $ws2 "2 "
 # set $ws3 "3 Notepad "
-set $ws3 "3 Chat "
+set $ws3 "3 "
 set $ws4 "4 "
 set $ws5 "5 "
 set $ws6 "6 "
 set $ws7 "7 "
-set $ws8 "8 Work "
-set $ws9 "9 Steam "
-set $ws10 "10 Music "
+set $ws8 "8 "
+set $ws9 "9 "
+set $ws10 "10 "
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -210,8 +215,8 @@ exec chromium
 exec ~/DevTools/Telegram/Telegram
 # exec /usr/share/simplenote/simplenote
 exec keepassx2 #launch in scratchpad
-exec urxvt -name scratchpad -e keepassx2
+# exec urxvt -name scratchpad -e keepassx2
 exec deadbeef
 # exec --no-startup-id i3-msg 'workspace $ws10; exec thunar /media/aim/Media/Music; move right; workspace $ws1'
-exec i3-sensible-terminal -e "tmux -u" #in 1st workspace by default
+exec i3-sensible-terminal -e tmux -u #in 1st workspace by default
 

@@ -1,7 +1,11 @@
+URxvt*urgentOnBell: false
+URxvt*visualBell: false
 URxvt.scrollBar: false
-
 URxvt*background: #2F2F2F
 URxvt*foreground: #F7F7F7
+
+URxvt*transparent: true
+URxvt*shading: 20
 
 URxvt*color0: #2F2F2F
 URxvt*color1: #FF2000
@@ -28,3 +32,4 @@ URxvt*keysym.Home: \033[1~
 URxvt*keysym.End: \033[4~
 
 URxvt*xftAutoHint: true
+

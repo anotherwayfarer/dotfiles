@@ -10,8 +10,13 @@ then
     DBSONGNAME=${DBSONGNAME:0:SONGLEN}
 fi
 
-DBSONGINFO="<span foreground='#f39c12'>"$DBARTISTNAME"</span> - "
-DBSONGINFO=$DBSONGINFO"<span foreground='#f1c40f'>"$DBSONGNAME"</span>"
+if [ "$DBARTISTNAME" = "nothing" ]
+then
+    DBSONGINFO="<span foreground='#000000'>Nothing</span>"
+else
+    DBSONGINFO="<span foreground='#f39c12'>"$DBARTISTNAME"</span> - "
+    DBSONGINFO=$DBSONGINFO"<span foreground='#f1c40f'>"$DBSONGNAME"</span>"
+fi
 
 case $BLOCK_BUTTON in
     3) echo "$DBSONGINFO" | xclip ;;
