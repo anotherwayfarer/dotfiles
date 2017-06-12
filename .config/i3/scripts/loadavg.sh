@@ -2,11 +2,14 @@
 
 LOADAVG="$(cat /proc/loadavg | gawk '{print $1}')"
 INTAVG="$(cat /proc/loadavg | gawk '{print $1*100}')"
-echo $LOADAVG
-echo $LOADAVG
-if (($INTAVG < 100))
+VARCOLOR="#b2b2b2"
+if (($INTAVG > 200))
 then
-    echo "#2ecc71"
-else
-    echo "#e74c3c"
+    VARCOLOR="#e74c3c"
+elif (($INTAVG > 100))
+then
+    VARCOLOR="#f1c40f"
 fi
+
+echo "<span foreground='"$VARCOLOR"'>"$LOADAVG"</span>"
+
