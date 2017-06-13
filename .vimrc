@@ -47,7 +47,7 @@ set showcmd " view current commands
 set textwidth=100
 set comments=sl:/*,mb:\ *,elx:\ */
 
-autocmd BufEnter,BufWritePost ?* setlocal colorcolumn=101  " mark 101 column
+autocmd BufEnter,BufWritePost ?* setlocal colorcolumn=81  " mark 101 column
 highlight ExtraWhitespace ctermbg=red guibg=red " hl on file opening
 match ExtraWhitespace /\s\+$\| \+\ze\t/
 
@@ -120,6 +120,8 @@ noremap <Right> <Nop>
 " noremap gk gj
 
 map q: :q
+map :qq :q
+map :qQ :q
 map :Q :q
 map :W :w
 inoremap jj <Esc>

@@ -30,9 +30,13 @@ bindsym $mod+Shift+q kill
 #bindsym $mod+d exec dmenu_run
 # bindsym $mod+d exec rofi -show run -lines 6 -eh 2 -width 100 -padding 400 -opacity "85" -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd" -font "System San Francisco Display 18"
 bindsym $mod+d exec rofi -show run
+bindsym $mod+shift+d exec --no-startup-id i3-dmenu-desktop \
+        --dmenu="dmenu \
+        -nb '#2f2f2f' -nf '#f3f4f5' -sb '#27ae60' -sf '#f3f4f5' \
+        -fn 'System San Francisco Display:bold:pixelsize=21'"
+
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file.
-bindsym $mod+shift+d exec --no-startup-id i3-dmenu-desktop
 
 # scrot & gimp - root
 bindsym Print exec scrot -e 'mv $f /tmp/ && gimp /tmp/$f'
