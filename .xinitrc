@@ -3,6 +3,10 @@
 # disable bell
 xset -b
 
+export TERMINAL=/usr/bin/urxvt
+export EDITOR=/usr/bin/vim
+export LC_ALL=en_US.UTF-8
+
 # exec feh --bg-scale /home/aim/mywall.png &
 exec i3 -l
 # exec i3 -V >> ~/i3log-$(date +'%F-%k-%M-%S') 2>&1

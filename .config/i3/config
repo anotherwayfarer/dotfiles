@@ -131,7 +131,7 @@ bindsym $mod+Shift+r reload
 # bindsym $mod+Shift+r restart
 
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "$HOME/.config/i3/scripts/exit_menu"
+bindsym $mod+Shift+e exec "$HOME/.config/i3/scripts/exit_menu.sh"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -211,10 +211,10 @@ bar {
 # i3-gaps config
 
 gaps inner 15
-gaps outer 5
+gaps outer 15
 
-workspace $ws2 gaps outer 0
-workspace $ws2 gaps inner 0
+workspace $ws2 gaps outer 10
+workspace $ws2 gaps inner 10
 
 workspace $ws3 gaps outer 20
 workspace $ws3 gaps inner 20

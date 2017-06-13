@@ -4,9 +4,9 @@ DBSONGNAME="$(cmus-remote -Q | egrep 'tag title' | sed -r 's/^.{10}//')"
 DBARTISTNAME="$(cmus-remote -Q | egrep 'tag artist' | sed -r 's/^.{11}//')"
 OUTPUTLINE="$(echo $DBSONGNAME' - '$DBARTISTNAME)"
 
-if ((${#OUTPUTLINE} > 35))
+if ((${#OUTPUTLINE} > 50))
 then
-    SONGLEN=30-${#DBARTISTNAME}
+    SONGLEN=45-${#DBARTISTNAME}
     DBSONGNAME=${DBSONGNAME:0:SONGLEN}...
 fi
 

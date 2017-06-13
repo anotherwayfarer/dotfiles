@@ -10,7 +10,7 @@ URxvt*background: #2F2F2F
 URxvt*foreground: #F7F7F7
 URxvt*color0: #2F2F2F
 URxvt*color1: #FF2000
-URxvt*color2: #C0FF00
+URxvt*color2: #01EE02
 URxvt*color3: #F6DC69
 URxvt*color4: #88CCE7
 URxvt*color5: #D000FF
@@ -22,7 +22,7 @@ URxvt*color10: #F6DC69
 URxvt*color11: #F6DC69
 URxvt*color12: #2EB5C1
 URxvt*color13: #FF81FC
-URxvt*color14: #D1FA71
+URxvt*color14: #90AB4F
 URxvt*color15: #F7F7F7
 
 ! URxvt*background: #2F2F2F
