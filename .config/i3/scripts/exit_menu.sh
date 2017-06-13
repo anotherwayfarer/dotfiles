@@ -1,8 +1,9 @@
 #!/bin/bash
 
 while [ "$select" != "NOTHING" -a "$select" != "LOGOUT" \
-        -a "$select" != "SHUTDOWN" -a "$select" != "REBOOT" ]; do
-    select=$(echo -e 'NOTHING\n\nLOGOUT\nSHUTDOWN\nREBOOT' | \
+        -a "$select" != "SHUTDOWN" -a "$select" != "REBOOT" \
+        -a "$select" != "LOCK" ]; do
+    select=$(echo -e 'NOTHING\nLOCK\n\nLOGOUT\nSHUTDOWN\nREBOOT' | \
         dmenu -nb '#2f2f2f' -nf '#f3f4f5' -sb '#27ae60' -sf '#f3f4f5' -fn \
         'System San Francisco Display:bold:pixelsize=21' -i \
         -p "What do you want to do?")
@@ -11,12 +12,16 @@ done
 
 if [ "$select" = "NOTHING" ]; then
     exit 0;
-else
-    killall -HUP cmus;
-    killall -HUP chromium;
-    killall -HUP Telegram;
-    killall -HUP vim;
 fi
+if [ "$select" = "LOCK" ]; then
+    $HOME/.config/i3/lock.sh scrot;
+    exit 0;
+fi
+
+killall -HUP cmus;
+killall -HUP chromium;
+killall -HUP Telegram;
+killall -HUP vim;
 
 [ "$select" = "LOGOUT" ] && i3-msg exit;
 [ "$select" = "SHUTDOWN" ] && shutdown now;

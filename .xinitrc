@@ -2,6 +2,7 @@
 
 # disable bell
 xset -b
+xset dpms 600
 
 export TERMINAL=/usr/bin/urxvt
 export EDITOR=/usr/bin/vim
