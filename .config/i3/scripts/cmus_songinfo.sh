@@ -1,7 +1,7 @@
 #!/bin/sh
 
-DBSONGNAME="$(deadbeef --nowplaying '%t')"
-DBARTISTNAME="$(deadbeef --nowplaying '%a')"
+DBSONGNAME="$(cmus-remote -Q | egrep 'tag title' | sed -r 's/^.{10}//')"
+DBARTISTNAME="$(cmus-remote -Q | egrep 'tag artist' | sed -r 's/^.{11}//')"
 OUTPUTLINE="$(echo $DBSONGNAME' - '$DBARTISTNAME)"
 
 if ((${#OUTPUTLINE} > 35))
@@ -10,7 +10,7 @@ then
     DBSONGNAME=${DBSONGNAME:0:SONGLEN}...
 fi
 
-if [ "$DBARTISTNAME" = "nothing" ]
+if [ "$DBARTISTNAME" = "" ]
 then
     DBSONGINFO="<span foreground='#828282'>Nothing</span>"
 else

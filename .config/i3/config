@@ -23,8 +23,9 @@ bindsym $mod+Shift+Return exec i3-sensible-terminal
 # kill focused window
 bindsym $mod+Shift+q kill
 
-bindsym $mod+Shift+BackSpace exec reboot
-#
+# bindsym $mod+Shift+BackSpace exec reboot
+# bindsym $mod+Shift+F10 exec
+
 # start dmenu (a program launcher)
 #bindsym $mod+d exec dmenu_run
 # bindsym $mod+d exec rofi -show run -lines 6 -eh 2 -width 100 -padding 400 -opacity "85" -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd" -font "System San Francisco Display 18"
@@ -120,7 +121,7 @@ assign [class="^Chromium$"] $ws2
 assign [class="TelegramDesktop"] $ws3
 assign [title="^TeamViewer$"] $ws8
 assign [class="^Steam$"] $ws9
-assign [class="^Deadbeef$"] $ws10
+# assign [class="^Deadbeef$"] $ws10
 assign [class="^Transmission-gtk"] $ws7
 assign [class="^VirtualBox"] $ws9
 
@@ -158,11 +159,11 @@ bindsym XF86AudioLowerVolume exec amixer -D pulse sset Master 2%-
 bindsym XF86AudioRaiseVolume exec amixer -D pulse sset Master 2%+
 bindsym XF86AudioMute exec amixer -D pulse sset Master 0%
 
-# bindsym XF86AudioPlay exec playerctl play
-# bindsym XF86AudioPause exec playerctl pause
-# bindsym XF86AudioStop exec playerctl stop
-# bindsym XF86AudioNext exec playerctl next
-# bindsym XF86AudioPrev exec playerctl previous
+bindsym XF86AudioPlay exec cmus-remote -p
+bindsym XF86AudioPause exec cmus-remote -u
+bindsym XF86AudioStop exec cmus-remote -s
+bindsym XF86AudioNext exec cmus-remote -n
+bindsym XF86AudioPrev exec cmus-remote -r
 
 # setup colors
 set $bg-color            #2f2f2f
@@ -188,7 +189,8 @@ client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color      
 bar {
 #        status_command i3status
         status_command i3blocks -c ~/.config/i3/i3blocks.conf
-        position bottom
+        # position bottom
+        position top
         tray_output none #primary
         font pango: System San Francisco Display 14
         separator_symbol " "
@@ -205,9 +207,24 @@ bar {
         }
 }
 
+################################################################################
+# i3-gaps config
+
+gaps inner 15
+gaps outer 5
+
+workspace $ws2 gaps outer 0
+workspace $ws2 gaps inner 0
+
+workspace $ws3 gaps outer 20
+workspace $ws3 gaps inner 20
+
+workspace $ws10 gaps outer 20
+workspace $ws10 gaps inner 20
+
 # before autostart
 # exec --no-startup-id pactl upload-sample ~/.i3/that_was_easy.wav that_was_easy
-exec_always --no-startup-id feh --bg-fill ~/Pictures/mywall.png
+exec_always --no-startup-id feh --bg-fill ~/Pictures/wall1.jpg
 exec_always compton -f
 
 # autostart
@@ -216,7 +233,7 @@ exec ~/DevTools/Telegram/Telegram
 # exec /usr/share/simplenote/simplenote
 exec keepassx2 #launch in scratchpad
 # exec urxvt -name scratchpad -e keepassx2
-exec deadbeef
-# exec --no-startup-id i3-msg 'workspace $ws10; exec thunar /media/aim/Media/Music; move right; workspace $ws1'
+
+exec --no-startup-id i3-msg 'workspace $ws10; exec urxvt -e cmus; workspace $ws1'
 exec i3-sensible-terminal -e tmux -u #in 1st workspace by default
 
