@@ -1,11 +1,6 @@
 syntax enable
-" colorscheme darkblue
-" colorscheme monokai
-" colorscheme railscasts
-" colorscheme mustang
-" colorscheme jellybeans
-colorscheme smyck
-" colorscheme desert
+" colorscheme smyck
+colorscheme my_theme
 
 filetype plugin indent on
 runtime macros/matchit.vim " enable if-else match search by pressing %
@@ -30,13 +25,13 @@ set incsearch " search while typing
 
 set number " left side
 set numberwidth=5
-set relativenumber
+" set relativenumber
 
 set ruler " bottom line
 
 set scrolljump=1 " srolling offsets
-set scrolloff=5
-set sidescroll=5
+" set scrolloff=5
+" set sidescroll=5
 
 set mouse=a " enable mouse
 set winminheight=0 " window size
@@ -47,18 +42,17 @@ set showcmd " view current commands
 set textwidth=100
 set comments=sl:/*,mb:\ *,elx:\ */
 
-autocmd BufEnter,BufWritePost ?* setlocal colorcolumn=81  " mark 101 column
+" autocmd BufEnter,BufWritePost ?* setlocal colorcolumn=81  " mark 81 column
 highlight ExtraWhitespace ctermbg=red guibg=red " hl on file opening
 match ExtraWhitespace /\s\+$\| \+\ze\t/
 
 " set shortmess=a
-
 " You can replace all the tabs with spaces in the entire file with
 " > :%retab
 
 " ---------- SYSTEM ----------
-set exrc " enable load non-default .vimrc
-set secure " disable specific non-secure commands from non-default .vimrc
+set exrc    " enable load non-default .vimrc
+set secure  " disable specific non-secure commands from non-default .vimrc
 set spelllang=en
 
 set timeoutlen=500
@@ -91,33 +85,15 @@ autocmd BufWritePre * %s/\s\+$//e " delete whitespaces on writing
 
 " ---------- KEYMAPPING ----------
 " enable russian keyboard layout mapping
-" so ~/.vimrc_russian
+so ~/.vimrc_russian
 
 nnoremap <c-s> <Nop>
 
-" remap to JKL;
-" noremap ' ;
-" noremap ; l
-" noremap l k
-" noremap k j
-" noremap j h
-" noremap h <Nop>
-
 " disable arrows
-noremap <Up> <Nop>
-noremap <Down> <Nop>
-noremap <Left> <Nop>
+noremap <Up>    <Nop>
+noremap <Down>  <Nop>
+noremap <Left>  <Nop>
 noremap <Right> <Nop>
-
-" change window
-" noremap <c-w>j <c-w>h
-" noremap <c-w>k <c-w>j
-" noremap <c-w>l <c-w>k
-" noremap <c-w>; <c-w>l
-
-" screen lines
-" noremap gl gk
-" noremap gk gj
 
 map q: :q
 map :qq :q
@@ -130,21 +106,21 @@ nnoremap & :&&<CR>
 xnoremap & :&&<CR>
 
 " buffers and tabs
-map <Leader>t :tabnew<cr>
-nmap <" Leader>t :tabnew<cr>
-
-map <Leader>c :tabclose<cr>
-nmap <Leader>c :tabclose<cr>
+" map <Leader>t :tabnew<cr>
+" nmap <Leader>t :tabnew<cr>
+"
+" map <Leader>c :tabclose<cr>
+" nmap <Leader>c :tabclose<cr>
 
 " fast replace
 nmap \ :%s/\<<c-r>=expand("<cword>")<cr>\>/<c-r>=expand("<cword>")<cr>
 
 " Doxygen
-map <F1> :Dox<CR>
+" map <F1> :Dox<CR>
 
 " F2 save the file
-nmap <F2> :w<CR>
-imap <F2> <ESC>:w<CR>i
+" nmap <F2> :w<CR>
+" imap <F2> <ESC>:w<CR>i
 
 " F3 copy to clipboard
 vmap <F3> y:call system("xclip -i -selection clipboard", getreg("\""))<CR>:call system("xclip -i", getreg("\""))<CR>
@@ -174,8 +150,8 @@ Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+" Plug 'vim-airline/vim-airline'
+" Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-scripts/DoxygenToolkit.vim'
 " Plug 'antoyo/vim-licenses'
 Plug 'justmao945/vim-clang'
@@ -186,13 +162,10 @@ call plug#end()
 let g:header_field_author = 'Alexey Minchakov'
 let g:header_field_author_email = 'lexaaim@gmail.com'
 
-
 let g:licenses_copyright_holders_name = 'Alexey Minchakov <lexaaim@gmail.com>'
-"let g:licenses_authors_name = 'Alexey Minchakov <lexaaim@gmail.com>'
 let g:licenses_default_commands = ['gpl', 'mit' ]
 
-
-let g:clang_c_options = '-std=gnu11'
+let g:clang_c_options = '-std=c11'
 let g:clang_cpp_options = '-std=c++14 -stdlib=libstdc++'
 
 " source ~/.simplenoterc
@@ -208,13 +181,6 @@ let NERDTreeDirArrows = 1
 let NERDTreeShowHidden=1
 
 let g:move_key_modifier = 'C'
-
-" let g:session_autoload = 'yes'
-" let g:session_autosave = 'yes'
-" let g:session_autosave_periodic = 5
-" let g:session_autosave_silent = 1
-" overwrite default
-" let g:session_default_to_last = 1
 
 " set statusline+=%#warningmsg#
 " set statusline+=%{SyntasticStatuslineFlag()}
@@ -240,37 +206,37 @@ let g:NERDCommentEmptyLines = 1
 let g:NERDTrimTrailingWhitespace = 1
 
 " airlines
-let g:airline_theme='solarized'
-let g:airline_powerline_fonts = 1
-" enable tab management
-let g:airline#extensions#tabline#enabled = 1
-" always show tabline
-let g:airline#extensions#tabline#tab_min_count = 0
-let g:airline#extensions#tabline#formatter = 'unique_tail'
-let g:airline#extensions#tabline#show_buffers = 0
-" show file extension
-let g:airline#extensions#tabline#fnamemod = ':t'
-let g:airline_section_warning = ''
-let g:airline_section_error = ''
-" disable closing tab with mouse
-let g:airline#extensions#tabline#show_close_button = 0
-" disable separator
-let g:airline#extensions#tabline#left_alt_sep = ''
-" disable tagbar
-let g:airline#extensions#tagbar#enabled = 0
-" show tab number
-let g:airline#extensions#tabline#show_tab_nr = 1
-" show only tab number
-let g:airline#extensions#tabline#tab_nr_type = 1
+" let g:airline_theme='solarized'
+" let g:airline_powerline_fonts = 1
+" " enable tab management
+" let g:airline#extensions#tabline#enabled = 1
+" " always show tabline
+" let g:airline#extensions#tabline#tab_min_count = 0
+" let g:airline#extensions#tabline#formatter = 'unique_tail'
+" let g:airline#extensions#tabline#show_buffers = 0
+" " show file extension
+" let g:airline#extensions#tabline#fnamemod = ':t'
+" let g:airline_section_warning = ''
+" let g:airline_section_error = ''
+" " disable closing tab with mouse
+" let g:airline#extensions#tabline#show_close_button = 0
+" " disable separator
+" let g:airline#extensions#tabline#left_alt_sep = ''
+" " disable tagbar
+" let g:airline#extensions#tagbar#enabled = 0
+" " show tab number
+" let g:airline#extensions#tabline#show_tab_nr = 1
+" " show only tab number
+" let g:airline#extensions#tabline#tab_nr_type = 1
 
-let g:DoxygenToolkit_briefTag_pre="@Synopsis  "
-let g:DoxygenToolkit_paramTag_pre="@Param "
-let g:DoxygenToolkit_returnTag="@Returns   "
-let g:DoxygenToolkit_blockHeader="--------------------------------------------------------------------------"
-let g:DoxygenToolkit_blockFooter="----------------------------------------------------------------------------"
-let g:DoxygenToolkit_authorName="Alexey Minchakov <lexaaim@gmail.com>"
-let g:DoxygenToolkit_licenseTag="WTFPLv2 License"
-let g:DoxygenToolkit_versionString="1.0"
+" let g:DoxygenToolkit_briefTag_pre="@Synopsis  "
+" let g:DoxygenToolkit_paramTag_pre="@Param "
+" let g:DoxygenToolkit_returnTag="@Returns   "
+" let g:DoxygenToolkit_blockHeader="--------------------------------------------------------------------------"
+" let g:DoxygenToolkit_blockFooter="----------------------------------------------------------------------------"
+" let g:DoxygenToolkit_authorName="Alexey Minchakov <lexaaim@gmail.com>"
+" let g:DoxygenToolkit_licenseTag="WTFPLv2 License"
+" let g:DoxygenToolkit_versionString="1.0"
 
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0

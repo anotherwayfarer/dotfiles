@@ -1,5 +1,5 @@
 source "gpg -dq $HOME/.mutt/accounts.gpg |"
-source $HOME/.mutt/muttrc_colors2
+source $HOME/.mutt/muttrc_colors
 
 folder-hook 'gmail.com' 'source ~/.mutt/gmail'
 folder-hook 'yandex.ru' 'source ~/.mutt/yandex'
@@ -19,12 +19,12 @@ set mailcap_path  = ~/.mutt/mailcap
 source $alias_file
 
 
-set sort = 'reverse-date'
+set sort = 'threads'
 set editor = `echo \$EDITOR`
 #set copy = no
 set timeout = "5"
 set mail_check = "10"
-set date_format="%m/%d %I:%M"
+set date_format="%d.%m.%y %I:%M"
 set index_format="%2C %Z %d %-15.15F %s (%-4.4c)"
 #set status_format="mpv ~/.config/mutt/bump.wav"
 #set wrap = 0
@@ -32,17 +32,17 @@ set index_format="%2C %Z %d %-15.15F %s (%-4.4c)"
 auto_view text/html
 alternative_order text/plain text/enriched text/html
 
-mono bold bold
-mono underline underline
-mono indicator reverse
-color index yellow default '.*'
-color index_author red default '.*'
-color index_number blue default
-color index_subject cyan default '.s'
-color index_size green default
-color normal default default
-color body brightred default [\-\.+_a-zA-Z0-9]+@[\-\.a-zA-Z0-9]+
-color body brightblue default (https?|ftp)://[\-\.,/%~_:?&=\#a-zA-Z0-9]+
+# mono bold bold
+# mono underline underline
+# mono indicator reverse
+# color index_author red default '.*'
+# color index_number blue default
+# color index_subject cyan default '.s'
+# color index_size green default
+# color index red default '.*'
+# color normal default default
+# color body brightred default [\-\.+_a-zA-Z0-9]+@[\-\.a-zA-Z0-9]+
+# color body brightblue default (https?|ftp)://[\-\.,/%~_:?&=\#a-zA-Z0-9]+
 
 # bind editor <space> noop
 # bind index G last-entry

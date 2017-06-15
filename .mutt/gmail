@@ -20,7 +20,6 @@ set from      = $my_gmail_user
 set smtp_url  = 'smtp://'$my_gmail_user'@smtp.gmail.com:587/'
 set smtp_pass = $my_gmail_pass
 
-
 # macro index gi "<change-folder>=INBOX<enter>" "Go to inbox"
 # macro index ga "<change-folder>=[Gmail].All Mail<enter>" "Go to all mail"
 # macro index gs "<change-folder>=[Gmail].Sent Mail<enter>" "Go to sent mail"

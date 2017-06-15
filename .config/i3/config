@@ -218,11 +218,11 @@ gaps outer 10
 workspace $ws2 gaps outer 10
 workspace $ws2 gaps inner 10
 
-workspace $ws3 gaps outer 20
-workspace $ws3 gaps inner 20
+# workspace $ws3 gaps outer 20
+# workspace $ws3 gaps inner 20
 
-workspace $ws10 gaps outer 20
-workspace $ws10 gaps inner 20
+# workspace $ws10 gaps outer 20
+# workspace $ws10 gaps inner 20
 
 # end i3 gaps config
 ################################################################################
