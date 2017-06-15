@@ -10,11 +10,15 @@ alias zshrc="vim ~/.zshrc"
 alias vimcpprc="vim ~/.vim/after/ftplugin/cpp.vim"
 alias tmuxconf="vim ~/.tmux.conf"
 
-alias ls='ls -F1 --color=auto'
+alias top='top -o %CPU'
+# alias ls='ls -F1 --color=auto'
 alias ll='ls -laFh'
 alias zip='zip -9'
 alias gzip='gzip -9'
 alias bzip2='bzip2 -9'
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
 
 alias cl++14="g++ --std=c++14 -pthread -Wall -Wextra -O2"
 alias g++14="g++ --std=c++14 -pthread -Wall -Wextra -O2"

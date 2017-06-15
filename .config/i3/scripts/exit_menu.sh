@@ -22,6 +22,7 @@ killall -HUP cmus;
 killall -HUP chromium;
 killall -HUP Telegram;
 killall -HUP vim;
+sleep 2;
 
 [ "$select" = "LOGOUT" ] && i3-msg exit;
 [ "$select" = "SHUTDOWN" ] && shutdown now;
