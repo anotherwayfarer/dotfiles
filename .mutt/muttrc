@@ -17,15 +17,15 @@ set mailcap_path  = ~/.mutt/mailcap
 # set sort_alias    = alias
 # set reverse_alias = yes
 source $alias_file
+set send_charset="utf-8"
 
-
-set sort = 'threads'
-set editor = `echo \$EDITOR`
+set sort = 'reverse-date'
+set editor = vim
 #set copy = no
 set timeout = "5"
 set mail_check = "10"
 set date_format="%d.%m.%y %I:%M"
-set index_format="%2C %Z %d %-15.15F %s (%-4.4c)"
+set index_format="%2C %Z %d %-25.25F %s (%-4.4c)"
 #set status_format="mpv ~/.config/mutt/bump.wav"
 #set wrap = 0
 
