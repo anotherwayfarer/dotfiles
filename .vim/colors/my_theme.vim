@@ -16,84 +16,180 @@ endif
 
 let g:colors_name = "my_theme"
 
-hi Normal           cterm=none ctermbg=none ctermfg=15   gui=none guibg=#282828 guifg=#F7F7F7
-" number rows columncolors
-hi LineNr           cterm=none ctermbg=none ctermfg=7    gui=none guibg=#282828 guifg=#8F8F8F
-hi CursorLineNr     cterm=bold ctermbg=3    ctermfg=0    gui=none guibg=#282828 guifg=#8F8F8F
-hi StatusLine       cterm=none ctermbg=none ctermfg=15   gui=none guibg=#000000 guifg=#FBFBFB
-hi StatusLineNC     cterm=none ctermbg=none ctermfg=8    gui=none guibg=#000000 guifg=#FBFBFB
-hi Search           cterm=none ctermbg=6    ctermfg=15   gui=none guibg=#2EB5C1 guifg=#F7F7F7
-hi IncSearch        cterm=none ctermbg=3    ctermfg=8    gui=none guibg=#F6DC69 guifg=#8F8F8F
-hi ColumnMargin     cterm=none ctermbg=0                 gui=none guibg=#000000
-hi Error            cterm=none ctermbg=1    ctermfg=15   gui=none               guifg=#F7F7F7
-hi ErrorMsg         cterm=none ctermbg=1    ctermfg=15   gui=none               guifg=#F7F7F7
-hi Folded           cterm=none ctermbg=8    ctermfg=2    gui=none guibg=#3B3B3B guifg=#90AB41
-hi FoldColumn       cterm=none ctermbg=8    ctermfg=2    gui=none guibg=#3B3B3B guifg=#90AB41
-hi NonText          cterm=bold ctermbg=none ctermfg=8    gui=bold               guifg=#8F8F8F
-hi ModeMsg          cterm=bold ctermbg=none ctermfg=10   gui=none
-hi Pmenu            cterm=none ctermbg=8    ctermfg=15   gui=none guibg=#8F8F8F guifg=#F7F7F7
-hi PmenuSel         cterm=none ctermbg=15   ctermfg=8    gui=none guibg=#F7F7F7 guifg=#8F8F8F
-hi PmenuSbar        cterm=none ctermbg=15   ctermfg=8    gui=none guibg=#F7F7F7 guifg=#8F8F8F
-hi SpellBad         cterm=none ctermbg=1    ctermfg=15   gui=none               guifg=#F7F7F7
-hi SpellCap         cterm=none ctermbg=4    ctermfg=15   gui=none               guifg=#F7F7F7
-hi SpellRare        cterm=none ctermbg=4    ctermfg=15   gui=none               guifg=#F7F7F7
-hi SpellLocal       cterm=none ctermbg=4    ctermfg=15   gui=none               guifg=#F7F7F7
-hi Visual           cterm=none ctermbg=15   ctermfg=8    gui=none guibg=#F7F7F7 guifg=#8F8F8F
-hi Directory        cterm=none ctermbg=none ctermfg=4    gui=none guibg=#242424 guifg=#88CCE7
-hi SpecialKey       cterm=none ctermbg=none ctermfg=8    gui=none               guifg=#8F8F8F
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" highlight-groups' colors
+" hi [hl-group] cterm=[bold,underline] ctermbg=[colour] ctermfg= gui= guibg= guifg=
+
+" used for the columns set with 'colorcolumn'
+hi ColorColumn      cterm=none ctermbg=1    ctermfg=0
+" placeholder characters substituted for concealed
+hi Conceal          cterm=none ctermbg=1    ctermfg=15
+" normal text
+hi Normal           cterm=none ctermbg=none ctermfg=15
+" the character under the cursor
+hi Cursor           cterm=bold ctermbg=15   ctermfg=0
+" like Cursor, but used when in IME mode
+hi CursorIM         cterm=bold ctermbg=15   ctermfg=0
+" the screen column and column that the cursor is in when 'cursorcolumn' is set
+hi CursorColumn     cterm=none ctermbg=none ctermfg=none
+hi CursorLine       cterm=none ctermbg=none ctermfg=none
+" directory names in listings
+hi Directory        cterm=none ctermbg=none ctermfg=4
+" diff mode: added line, changed, deleted, changer text within a line diff.txt
 hi DiffAdd          cterm=bold ctermbg=2    ctermfg=15
 hi DiffChange       cterm=bold ctermbg=4    ctermfg=15
 hi DiffDelete       cterm=bold ctermbg=1    ctermfg=15
 hi DiffText         cterm=bold ctermbg=3    ctermfg=8
-hi MatchParen       cterm=none ctermbg=6    ctermfg=15   gui=none guibg=#2EB5C1 guifg=#F7F7F7
-hi CursorLine       cterm=none ctermbg=none ctermfg=none gui=none guibg=#424242
-hi CursorColumn     cterm=none ctermbg=238  ctermfg=none gui=none guibg=#424242
-hi Title            cterm=none ctermbg=none ctermfg=4    gui=none               guifg=#88CCE7
-" buffers vertical splitter
-hi VertSplit        cterm=none ctermbg=none ctermfg=8    gui=none guibg=#282828 guifg=#F7F7F7
+" filler lines (~) after the last line in the buffer
+hi EndOfBuffer      cterm=none ctermbg=none ctermfg=none
+" error messages on the command line
+hi ErrorMsg         cterm=none ctermbg=1    ctermfg=15
+" the column separating vertically split windows
+hi VertSplit        cterm=none ctermbg=none ctermfg=8
+" line used for closed folds
+hi Folded           cterm=none ctermbg=8    ctermfg=2
+" 'foldcolumn'
+hi FoldColumn       cterm=none ctermbg=8    ctermfg=2
+" column where signs are displayed
+hi SignColumn       cterm=none ctermbg=none ctermfg=2
+" 'incsearch' highlighting: also used for replaces with ":s///c"
+hi IncSearch        cterm=none ctermbg=3    ctermfg=8
+" line number for :number and :# commands
+hi LineNr           cterm=none ctermbg=none ctermfg=7
+" like LineNr when 'cursorline' is set for the cursor line
+hi CursorLineNr     cterm=bold ctermbg=3    ctermfg=0
+" character under the cursor if it's a paired bracket
+hi MatchParen       cterm=none ctermbg=6    ctermfg=15
+" 'showmode' message (e.g. "-- INSERT --")
+hi ModeMsg          cterm=none ctermbg=none ctermfg=1
+" :h more-prompt
+hi MoreMsg          cterm=none ctermbg=none ctermfg=1
+" symbold that do not really exist in the text \n\t etc.
+hi NonText          cterm=bold ctermbg=none ctermfg=8
+" normal text
+hi Normal           cterm=none ctermbg=none ctermfg=15
+" popup meny: normal item, selected item, scrollbar, thumb of SB
+hi Pmenu            cterm=none ctermbg=8    ctermfg=15
+hi PmenuSel         cterm=none ctermbg=1    ctermfg=8
+hi PmenuSbar        cterm=none ctermbg=15   ctermfg=8
+hi PmenuThumb       cterm=none ctermbg=15   ctermfg=8
+" 'hit-enter' prompt and yes/no questions
+hi Normal           cterm=none ctermbg=none ctermfg=15
+" last search pattern highlighting (:h hlsearch)
+" also current line hl for quickfix window
+hi Search           cterm=none ctermbg=6    ctermfg=15
+" meta and special keys listed with ':map'
+hi SpecialKey       cterm=none ctermbg=none ctermfg=8
+" word is not recognized with spellchecker
+hi SpellBad         cterm=none ctermbg=1    ctermfg=15
+" word should start with a capital
+hi SpellCap         cterm=none ctermbg=4    ctermfg=15
+" word is recognized as one is used in another region
+hi SpellLocal       cterm=none ctermbg=4    ctermfg=15
+" is recognized as one that is hardly ever used
+hi SpellRare        cterm=none ctermbg=4    ctermfg=15
+" status line of current window
+hi StatusLine       cterm=none ctermbg=none ctermfg=15
+" status lines of NON-current windows
+hi StatusLineNC     cterm=none ctermbg=none ctermfg=8
+" tab pages line, not active tab page label
+hi TabLine          cterm=none ctermbg=0    ctermfg=8
+" tab pages line, where there are no labels
+hi TabLineFill      cterm=none ctermbg=none ctermfg=none
+" tab pages line, active tab page label
+hi TabLineSel       cterm=none ctermbg=3    ctermfg=0
+" titles for output from ":sel all", ":autocmd" etc.
+hi Title            cterm=none ctermbg=none ctermfg=4
+" visual mode selection
+hi Visual           cterm=none ctermbg=4    ctermfg=0
+" warning messages
+hi WarningMsg       cterm=bold ctermbg=1    ctermfg=0
+" current match in ':h wildmenu' completion
+hi WildMenu         cterm=none ctermbg=4    ctermfg=15
 
-" ----------------------------------------------------------------------------
-" Syntax Highlighting
-" ----------------------------------------------------------------------------
-hi Keyword          cterm=none ctermbg=none ctermfg=10      gui=none        guifg=#D1FA71
-hi Comment          cterm=none ctermbg=none ctermfg=8       gui=none        guifg=#8F8F8F
-hi Delimiter        cterm=none ctermbg=none ctermfg=15      gui=none        guifg=#F7F7F7
-hi Identifier       cterm=none ctermbg=none ctermfg=12      gui=none        guifg=#96D9F1
-hi Structure        cterm=none ctermbg=none ctermfg=12      gui=none        guifg=#9DEEF2
-hi Ignore           cterm=none ctermbg=none ctermfg=8       gui=none        guifg=bg
-hi Constant         cterm=none ctermbg=none ctermfg=12      gui=none        guifg=#96D9F1
-hi PreProc          cterm=none ctermbg=none ctermfg=10      gui=none        guifg=#D1FA71
-hi Type             cterm=none ctermbg=none ctermfg=12      gui=none        guifg=#96D9F1
-hi Statement        cterm=none ctermbg=none ctermfg=10      gui=none        guifg=#D1FA71
-hi Special          cterm=none ctermbg=none ctermfg=6       gui=none        guifg=#d7d7d7
-hi String           cterm=none ctermbg=none ctermfg=3       gui=none        guifg=#F6DC69
-hi Number           cterm=none ctermbg=none ctermfg=3       gui=none        guifg=#F6DC69
-hi Underlined       cterm=none ctermbg=none ctermfg=magenta gui=underline   guibg=#272727
-hi Symbol           cterm=none ctermbg=none ctermfg=9       gui=none        guifg=#FAB1AB
-hi Method           cterm=none ctermbg=none ctermfg=15      gui=none        guifg=#F7F7F7
-hi Interpolation    cterm=none ctermbg=none ctermfg=6       gui=none        guifg=#2EB5C1
+" also gui-only groups: WarningMsg, Menu, ScrollBar, Tooltip
 
-" Erlang
-hi link erlangAtom            Keyword
-hi link erlangBitType         Keyword
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" syntax highlighting
 
-hi link rubyBeginend          Keyword
-hi link rubyClass             Keyword
-hi link rubyModule            Keyword
-hi link rubyKeyword           Keyword
-hi link rubyOperator          Method
-hi link rubyIdentifier        Keyword
-hi link rubyClassVariable     Symbol
-hi link rubyInstanceVariable  Constant
-hi link rubyGlobalVariable    Constant
-hi link rubyClassVariable     Method
-hi link rubyConstant          Constant
-hi link rubySymbol            Symbol
-hi link rubyFunction          Constant
-hi link rubyControl           Keyword
-hi link rubyConditional       Keyword
-hi link rubyInterpolation     Interpolation
-hi link rubyInterpolationDelimiter    Interpolation
-hi link rubyRailsMethod       Method
+" any comment
+hi Comment          cterm=none ctermbg=none ctermfg=8
 
+" any constant
+hi Constant         cterm=none ctermbg=none ctermfg=12
+" a string constant: "this is a string"
+hi String           cterm=none ctermbg=none ctermfg=3
+" a character constant: 'c', '\n'
+hi Character        cterm=none ctermbg=none ctermfg=4
+" a number constant: 234, 0xff
+hi Number           cterm=none ctermbg=none ctermfg=3
+" a boolean constant: TRUE, false
+hi Boolean          cterm=none ctermbg=none ctermfg=4
+" a floating point constant: 2.3e10
+hi Float            cterm=none ctermbg=none ctermfg=3
+
+" any variable name
+hi Identifier       cterm=none ctermbg=none ctermfg=12
+" function name
+hi Function         cterm=none ctermbg=none ctermfg=12
+
+" any statement
+hi Statement        cterm=none ctermbg=none ctermfg=10
+" if then else endif switch etc.
+hi Conditional      cterm=none ctermbg=none ctermfg=10
+" for do while
+hi Repeat           cterm=none ctermbg=none ctermfg=10
+" case, default, etc.
+hi Label            cterm=none ctermbg=none ctermfg=10
+" sizeof, +, *, etc.
+hi Operator         cterm=none ctermbg=none ctermfg=10
+" any other keywords
+hi Keyword          cterm=none ctermbg=none ctermfg=10
+" try, catch, throw
+hi Exception        cterm=none ctermbg=none ctermfg=10
+
+" generic Preprocessor, #include, #define
+hi PreProc          cterm=none ctermbg=none ctermfg=10
+hi Include          cterm=none ctermbg=none ctermfg=10
+hi Define           cterm=none ctermbg=none ctermfg=10
+" same as define
+hi Macro            cterm=none ctermbg=none ctermfg=10
+" preprocessor #if, #else, #endif, etc.
+hi PreCondit        cterm=none ctermbg=none ctermfg=10
+
+" int, long, char, etc.
+hi Type             cterm=none ctermbg=none ctermfg=12
+" static, register, volatile, etc.
+hi StorageClass     cterm=none ctermbg=none ctermfg=12
+" struct, union, unim, etc.
+hi Structure        cterm=none ctermbg=none ctermfg=12
+" a typedef
+hi Typedef          cterm=none ctermbg=none ctermfg=12
+
+" any special symbol
+hi Special          cterm=none ctermbg=none ctermfg=6
+" special character in a constant
+hi Special          cterm=none ctermbg=none ctermfg=6
+" you can use CTRL-] on this
+hi Tag              cterm=none ctermbg=none ctermfg=6
+" character that needs attention
+hi Delimiter        cterm=none ctermbg=none ctermfg=15
+" special things inside a comment
+hi SpecialComment   cterm=none ctermbg=none ctermfg=7
+"  debugging statements
+hi Debug            cterm=none ctermbg=none ctermfg=8
+
+" text that stands out, HTML links
+hi Underlined       cterm=none ctermbg=none ctermfg=13
+
+" left blank, hidder ':h hl-Ignore'
+hi Ignore           cterm=none ctermbg=none ctermfg=8
+
+" eny erroneous construct
+hi Error            cterm=none ctermbg=171  ctermfg=15
+
+" anything that needs extra atterntion: TODO, FIXME and XXX
+hi Todo             cterm=none ctermbg=3    ctermfg=0
+
+" don't used: Symbol, Method, Interpolation.
 

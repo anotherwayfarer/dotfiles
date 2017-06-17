@@ -84,7 +84,7 @@ set wrapmargin=0                " turn off physical file wrapping
 
 set laststatus=2                " always view status line
 set showcmd                     " view current commands
-set cmdheight=2                 " command line height in lines
+" set cmdheight=2                 " command line height in lines
 " set comments=sl:/*,mb:\ *,elx:\ */
 
 " disable auto commenting when you insert blank line after a comment line
@@ -317,17 +317,17 @@ let g:NERDTrimTrailingWhitespace = 1
 " sudo make install
 " use :h clang.txt for help
 
-let g:clang_auto = 0                        " disable to complete auto
+let g:clang_auto = 0                        " disable to complete automatically
 
 let g:clang_c_options = '-std=c11'
 let g:clang_cpp_options = '-std=c++14 -stdlib=libstdc++'
 
 let g:clang_c_completeopt = 'longest,menuone'
-let g:clang_cpp_completeopt = 'longest,menuone,preview'
+let g:clang_cpp_completeopt = 'longest,menuone'
 
 let g:clang_diagsopt = 'rightbelow:6'
 let g:clang_sh_exec = 'zsh'
-let g:clang_vim_exec = 'vim-compiled'
+let g:clang_vim_exec = '/usr/local/bin/vim'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " doesn't formatted
