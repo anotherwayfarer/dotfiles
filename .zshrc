@@ -38,6 +38,8 @@ stty -ixon
 # disable ^d in terminator
 set -o ignoreeof
 
+# stty erase '^?'
+
 # if $USER == $DEFAULT_USER then hide user:host names in prompt
 export DEFAULT_USER=$(whoami)
 

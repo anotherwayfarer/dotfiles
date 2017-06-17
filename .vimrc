@@ -4,6 +4,7 @@ colorscheme my_theme
 
 " disable compatibility with vi. It should be placed before other settings
 set nocompatible
+set backspace=indent,eol,start  " bug while using compiled vim
 
 filetype plugin indent on       " depend indent rules on file types
 runtime macros/matchit.vim      " enable if-else matching search by pressing %
@@ -202,7 +203,7 @@ Plug 'tpope/vim-unimpaired'                 " ~
 " Plug 'vim-scripts/DoxygenToolkit.vim'
 Plug 'justmao945/vim-clang'
 Plug 'alpertuna/vim-header'                 " !
-" Plug 'tmux-plugins/vim-tmux'              " --
+" Plug 'tmux-plugins/vim-tmux  '              " --
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -305,10 +306,28 @@ let g:NERDTrimTrailingWhitespace = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGIN vim-clang
-" require install ctags(?) clang
+" require install ctags(?) clang python tcl perl lua
+" download vim sources
+" ./configure --with-features=huge --enable-gui=auto --enable-luainterp=yes
+"     --enable-fontset --enable-python3interp
+"     --enable-tclinterp --enable-perlinterp
+"
+" ! DO NOT USE    --with-vim-name=vim-compiled - because tmuxconf will not work
+" make
+" sudo make install
+" use :h clang.txt for help
+
+let g:clang_auto = 0                        " disable to complete auto
 
 let g:clang_c_options = '-std=c11'
 let g:clang_cpp_options = '-std=c++14 -stdlib=libstdc++'
+
+let g:clang_c_completeopt = 'longest,menuone'
+let g:clang_cpp_completeopt = 'longest,menuone,preview'
+
+let g:clang_diagsopt = 'rightbelow:6'
+let g:clang_sh_exec = 'zsh'
+let g:clang_vim_exec = 'vim-compiled'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " doesn't formatted
