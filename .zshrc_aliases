@@ -14,7 +14,7 @@ alias tmuxconf="vim ~/.tmux.conf"
 
 alias top='top -o %CPU'
 # alias ls='ls -F1 --color=auto'
-alias ll='ls -laFh'
+alias ll='ls -laFh --group-directories-first'
 alias zip='zip -9'
 alias gzip='gzip -9'
 alias bzip2='bzip2 -9'

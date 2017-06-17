@@ -1,11 +1,10 @@
-" ----------------------------------------------------------------------------
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vim color file, based on smyck by John-Paul
 " Maintainer:   Alexey Minchakov <lexaaim@ya.ru>
 " Last Change:  2017 June
 " License:      MIT
-" ----------------------------------------------------------------------------
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Reset Highlighting
 hi clear
 if exists("syntax_on")
   syntax reset
@@ -24,8 +23,6 @@ let g:colors_name = "my_theme"
 hi ColorColumn      cterm=none ctermbg=1    ctermfg=0
 " placeholder characters substituted for concealed
 hi Conceal          cterm=none ctermbg=1    ctermfg=15
-" normal text
-hi Normal           cterm=none ctermbg=none ctermfg=15
 " the character under the cursor
 hi Cursor           cterm=bold ctermbg=15   ctermfg=0
 " like Cursor, but used when in IME mode
@@ -40,8 +37,6 @@ hi DiffAdd          cterm=bold ctermbg=2    ctermfg=15
 hi DiffChange       cterm=bold ctermbg=4    ctermfg=15
 hi DiffDelete       cterm=bold ctermbg=1    ctermfg=15
 hi DiffText         cterm=bold ctermbg=3    ctermfg=8
-" filler lines (~) after the last line in the buffer
-hi EndOfBuffer      cterm=none ctermbg=none ctermfg=none
 " error messages on the command line
 hi ErrorMsg         cterm=none ctermbg=1    ctermfg=15
 " the column separating vertically split windows
@@ -55,7 +50,7 @@ hi SignColumn       cterm=none ctermbg=none ctermfg=2
 " 'incsearch' highlighting: also used for replaces with ":s///c"
 hi IncSearch        cterm=none ctermbg=3    ctermfg=8
 " line number for :number and :# commands
-hi LineNr           cterm=none ctermbg=none ctermfg=7
+hi LineNr           cterm=none ctermbg=none ctermfg=9
 " like LineNr when 'cursorline' is set for the cursor line
 hi CursorLineNr     cterm=bold ctermbg=3    ctermfg=0
 " character under the cursor if it's a paired bracket
@@ -64,8 +59,10 @@ hi MatchParen       cterm=none ctermbg=6    ctermfg=15
 hi ModeMsg          cterm=none ctermbg=none ctermfg=1
 " :h more-prompt
 hi MoreMsg          cterm=none ctermbg=none ctermfg=1
-" symbold that do not really exist in the text \n\t etc.
-hi NonText          cterm=bold ctermbg=none ctermfg=8
+" symbold that do not really exist in the text
+hi NonText          cterm=none ctermbg=none ctermfg=none
+" filler lines (~) after the last line in the buffer
+hi EndOfBuffer      cterm=none ctermbg=none ctermfg=0
 " normal text
 hi Normal           cterm=none ctermbg=none ctermfg=15
 " popup meny: normal item, selected item, scrollbar, thumb of SB
@@ -74,7 +71,7 @@ hi PmenuSel         cterm=none ctermbg=1    ctermfg=8
 hi PmenuSbar        cterm=none ctermbg=15   ctermfg=8
 hi PmenuThumb       cterm=none ctermbg=15   ctermfg=8
 " 'hit-enter' prompt and yes/no questions
-hi Normal           cterm=none ctermbg=none ctermfg=15
+hi Question         cterm=none ctermbg=none ctermfg=15
 " last search pattern highlighting (:h hlsearch)
 " also current line hl for quickfix window
 hi Search           cterm=none ctermbg=6    ctermfg=15
@@ -112,84 +109,87 @@ hi WildMenu         cterm=none ctermbg=4    ctermfg=15
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " syntax highlighting
 
+" 0 - black         1 - red         2 - green       3 - yellow
+" 4 - blue          5 - purple      6 - bluegreen   7 - light grey
+" 8 - dark grey     9 - pink        10- yellow      11- yellow
+" 12- bluegreen     13- purple      14- dark green  15- white
+
 " any comment
 hi Comment          cterm=none ctermbg=none ctermfg=8
 
 " any constant
-hi Constant         cterm=none ctermbg=none ctermfg=12
+hi Constant         cterm=none ctermbg=none ctermfg=4
 " a string constant: "this is a string"
-hi String           cterm=none ctermbg=none ctermfg=3
+hi String           cterm=none ctermbg=none ctermfg=4
 " a character constant: 'c', '\n'
-hi Character        cterm=none ctermbg=none ctermfg=4
-" a number constant: 234, 0xff
-hi Number           cterm=none ctermbg=none ctermfg=3
+hi Character        cterm=none ctermbg=none ctermfg=9
+" any special symbol
+hi Special          cterm=none ctermbg=none ctermfg=9
+" special character in a constant
+hi SpecialChar      cterm=none ctermbg=none ctermfg=9
 " a boolean constant: TRUE, false
-hi Boolean          cterm=none ctermbg=none ctermfg=4
+hi Boolean          cterm=none ctermbg=none ctermfg=3
+" a number constant: 234, 0xff
+hi Number           cterm=none ctermbg=none ctermfg=4
 " a floating point constant: 2.3e10
-hi Float            cterm=none ctermbg=none ctermfg=3
+hi Float            cterm=none ctermbg=none ctermfg=4
 
 " any variable name
-hi Identifier       cterm=none ctermbg=none ctermfg=12
+hi Identifier       cterm=none ctermbg=none ctermfg=15
 " function name
-hi Function         cterm=none ctermbg=none ctermfg=12
+hi Function         cterm=none ctermbg=none ctermfg=15
 
 " any statement
-hi Statement        cterm=none ctermbg=none ctermfg=10
+hi Statement        cterm=none ctermbg=none ctermfg=3
 " if then else endif switch etc.
-hi Conditional      cterm=none ctermbg=none ctermfg=10
+hi Conditional      cterm=none ctermbg=none ctermfg=3
 " for do while
-hi Repeat           cterm=none ctermbg=none ctermfg=10
+hi Repeat           cterm=none ctermbg=none ctermfg=3
 " case, default, etc.
-hi Label            cterm=none ctermbg=none ctermfg=10
-" sizeof, +, *, etc.
-hi Operator         cterm=none ctermbg=none ctermfg=10
+hi Label            cterm=none ctermbg=none ctermfg=3
+" sizeof, operator, etc.
+hi Operator         cterm=none ctermbg=none ctermfg=3
 " any other keywords
-hi Keyword          cterm=none ctermbg=none ctermfg=10
+hi Keyword          cterm=none ctermbg=none ctermfg=3
 " try, catch, throw
-hi Exception        cterm=none ctermbg=none ctermfg=10
+hi Exception        cterm=none ctermbg=none ctermfg=3
 
 " generic Preprocessor, #include, #define
-hi PreProc          cterm=none ctermbg=none ctermfg=10
-hi Include          cterm=none ctermbg=none ctermfg=10
-hi Define           cterm=none ctermbg=none ctermfg=10
+hi PreProc          cterm=none ctermbg=none ctermfg=9
+hi Include          cterm=none ctermbg=none ctermfg=9
+hi Define           cterm=none ctermbg=none ctermfg=9
 " same as define
-hi Macro            cterm=none ctermbg=none ctermfg=10
+hi Macro            cterm=none ctermbg=none ctermfg=9
 " preprocessor #if, #else, #endif, etc.
-hi PreCondit        cterm=none ctermbg=none ctermfg=10
+hi PreCondit        cterm=none ctermbg=none ctermfg=9
 
 " int, long, char, etc.
-hi Type             cterm=none ctermbg=none ctermfg=12
+hi Type             cterm=none ctermbg=none ctermfg=3
 " static, register, volatile, etc.
-hi StorageClass     cterm=none ctermbg=none ctermfg=12
+hi StorageClass     cterm=none ctermbg=none ctermfg=3
 " struct, union, unim, etc.
-hi Structure        cterm=none ctermbg=none ctermfg=12
+hi Structure        cterm=none ctermbg=none ctermfg=3
 " a typedef
-hi Typedef          cterm=none ctermbg=none ctermfg=12
+hi Typedef          cterm=none ctermbg=none ctermfg=3
 
-" any special symbol
-hi Special          cterm=none ctermbg=none ctermfg=6
-" special character in a constant
-hi Special          cterm=none ctermbg=none ctermfg=6
 " you can use CTRL-] on this
-hi Tag              cterm=none ctermbg=none ctermfg=6
+hi Tag              cterm=none ctermbg=none ctermfg=5
 " character that needs attention
-hi Delimiter        cterm=none ctermbg=none ctermfg=15
+hi Delimiter        cterm=none ctermbg=none ctermfg=14
 " special things inside a comment
-hi SpecialComment   cterm=none ctermbg=none ctermfg=7
+hi SpecialComment   cterm=none ctermbg=none ctermfg=8
 "  debugging statements
 hi Debug            cterm=none ctermbg=none ctermfg=8
 
 " text that stands out, HTML links
-hi Underlined       cterm=none ctermbg=none ctermfg=13
+hi Underlined  cterm=underline ctermbg=none ctermfg=4
 
-" left blank, hidder ':h hl-Ignore'
+" left blank, hidden ':h hl-Ignore'
 hi Ignore           cterm=none ctermbg=none ctermfg=8
 
 " eny erroneous construct
-hi Error            cterm=none ctermbg=171  ctermfg=15
+hi Error            cterm=none ctermbg=173  ctermfg=15
 
 " anything that needs extra atterntion: TODO, FIXME and XXX
-hi Todo             cterm=none ctermbg=3    ctermfg=0
-
-" don't used: Symbol, Method, Interpolation.
+hi Todo             cterm=none ctermbg=8    ctermfg=0
 

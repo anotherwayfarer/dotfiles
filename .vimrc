@@ -4,7 +4,7 @@ colorscheme my_theme
 
 " disable compatibility with vi. It should be placed before other settings
 set nocompatible
-set backspace=indent,eol,start  " bug while using compiled vim
+set backspace=indent,eol,start  " bug if use compiled vim
 
 filetype plugin indent on       " depend indent rules on file types
 runtime macros/matchit.vim      " enable if-else matching search by pressing %
@@ -28,11 +28,14 @@ set softtabstop=4               " use the same value as tabstop
 set shiftwidth=4                " use with reindent operations >> and <<
 set expandtab                   " expand tab with spaces, use <C-v><Tab> instead of <Tab>
 set shiftround                  " round spaces multiple of four
-" set autoindent                  " auto-indent new lines, doesn't need if ft plugin on
+" set autoindent                  " auto-indent new lines, doesn't need if 'ft plugin on'
 
 set list                        " make whitespace characters visible
 set listchars=tab:>-            " show <Tab> like >---
-set fillchars+=vert:\           " use space character for buffer vert separators
+
+" use space character for buffer vert separators
+" use different other fillchars, see :h fillchars
+set fillchars+=stl:\ ,stlnc:\ ,vert:\ ,fold:\ ,diff:\     "
 
 " If you search for something containing uppercase characters,
 " it will do a case sensitive search; if you search for something
@@ -153,6 +156,8 @@ noremap <Right> <Nop>
 
 map q: :q
 map :qq :q
+map :qqq :qa!
+" map :qqqq :qa!
 map :qQ :q
 map :Q :q
 map :W :w
@@ -312,7 +317,8 @@ let g:NERDTrimTrailingWhitespace = 1
 "     --enable-fontset --enable-python3interp
 "     --enable-tclinterp --enable-perlinterp
 "
-" ! DO NOT USE    --with-vim-name=vim-compiled - because tmuxconf will not work
+" ! DO NOT USE --with-vim-name=vim-compiled - because .tmux.conf will not work
+"
 " make
 " sudo make install
 " use :h clang.txt for help
@@ -330,94 +336,75 @@ let g:clang_sh_exec = 'zsh'
 let g:clang_vim_exec = '/usr/local/bin/vim'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" doesn't formatted
+" PLUGIN neocomplete
+" need vim (+lua) settings (how to compile with it see above)
+" use :h neocomplete for completely help
 
-
-" source ~/.simplenoterc
-" let g:SimplenoteSortOrder = "title"
-" nnoremap <Leader>s :SimplenoteList<Enter>
-
-" Doxygen
-" map <F1> :Dox<CR>
-
-" let g:DoxygenToolkit_briefTag_pre="@Synopsis  "
-" let g:DoxygenToolkit_paramTag_pre="@Param "
-" let g:DoxygenToolkit_returnTag="@Returns   "
-" let g:DoxygenToolkit_blockHeader="--------------------------------------------------------------------------"
-" let g:DoxygenToolkit_blockFooter="----------------------------------------------------------------------------"
-" let g:DoxygenToolkit_authorName="Alexey Minchakov <lexaaim@gmail.com>"
-" let g:DoxygenToolkit_licenseTag="WTFPLv2 License"
-" let g:DoxygenToolkit_versionString="1.0"
-
-
-" Disable AutoComplPop.
-let g:acp_enableAtStartup = 0
-" Use neocomplete.
-let g:neocomplete#enable_at_startup = 1
-let g:neocomplete#enable_auto_select = 0
-
-" Use smartcase.
-let g:neocomplete#enable_smart_case = 1
-" Set minimum syntax keyword length.
+let g:neocomplete#enable_at_startup = 1     " neocomplete gets started automatically
+" the number of the input completion at the time of key input automatically
+let g:neocomplete#auto_completion_start_length = 2
+" set minimum syntax keyword length.
 let g:neocomplete#sources#syntax#min_keyword_length = 3
+" use smartcase for matching (does not ignore the capital keys)
+let g:neocomplete#enable_smart_case = 1
 
-" Define dictionary.
+" let g:neocomplete#disable_auto_complete = 1
+" select first candidate automatically
+let g:neocomplete#enable_auto_select = 0
+" insert delimiter automatically
+let g:neocomplete#enable_auto_delimiter = 0
+" refresh candidates automatically, but increase screen flicker
+let g:neocomplete#enable_refresh_always = 0
+
+" define dictionary for vim and other apps
 let g:neocomplete#sources#dictionary#dictionaries = {
-    \ 'default' : '',
-    \ 'vimshell' : $HOME.'/.vimshell_hist',
-    \ 'scheme' : $HOME.'/.gosh_completions'
-        \ }
+            \ 'default' : '',
+            \ 'vimshell' : $HOME.'/.vimshell_hist',
+            \ }
 
-" Define keyword.
-if !exists('g:neocomplete#keyword_patterns')
-    let g:neocomplete#keyword_patterns = {}
-endif
-let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-
-" Plugin key-mappings.
-inoremap <expr><C-g>     neocomplete#undo_completion()
+" plugin key-mappings undo complete and autocomplete
+inoremap <expr><C-h>     neocomplete#undo_completion()
 inoremap <expr><C-l>     neocomplete#complete_common_string()
 
-" Recommended key-mappings.
-" <CR>: close popup and save indent.
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function()
-  return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
-  " For no inserting <CR> key.
-  "return pumvisible() ? "\<C-y>" : "\<CR>"
-endfunction
-" <TAB>: completion.
+" use <Tab> for select completion
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-" Close popup by <Space>.
-"inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
 
-" AutoComplPop like behavior.
-"let g:neocomplete#enable_auto_select = 1
+" enable for heavy omni completion for c and cpp
+if !exists('g:neocomplete#sources#omni#input_patterns')
+    let g:neocomplete#sources#omni#input_patterns = {}
+endif
+"let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
 
-" Shell like behavior(not recommended).
-"set completeopt+=longest
-"let g:neocomplete#enable_auto_select = 1
-"let g:neocomplete#disable_auto_complete = 1
-"inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
-
-" Enable omni completion.
+" How to setup omni for cpp see: http://vim.wikia.com/wiki/VimTip1608
+" Enable omni completion for different file types. Its omni-completion
+" settings (it is not plugin):
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+" autocmd FileType cpp setlocal omnifunc=syntaxcomplete#Complete
+" autocmd FileType c setlocal omnifunc=syntaxcomplete#Complete
 
-" Enable heavy omni completion.
-if !exists('g:neocomplete#sources#omni#input_patterns')
-  let g:neocomplete#sources#omni#input_patterns = {}
-endif
-"let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-"let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
 
-" For perlomni.vim setting.
-" https://github.com/c9s/perlomni.vim
-" let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" PLUGIN simplenote
+" source ~/.simplenoterc
+" let g:SimplenoteSortOrder = "title"
+" nnoremap <Leader>s :SimplenoteList<Enter>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" PLUGIN Doxygen
+" map <F1> :Dox<CR>
+
+" let g:DoxygenToolkit_briefTag_pre="@Synopsis  "
+" let g:DoxygenToolkit_paramTag_pre="@Param "
+" let g:DoxygenToolkit_returnTag="@Returns   "
+" let g:DoxygenToolkit_blockHeader="-----------------------------------------------------------------------"
+" let g:DoxygenToolkit_blockFooter="-----------------------------------------------------------------------"
+" let g:DoxygenToolkit_authorName="Alexey Minchakov <lexaaim@gmail.com>"
+" let g:DoxygenToolkit_licenseTag="WTFPLv2 License"
+" let g:DoxygenToolkit_versionString="1.0"
+

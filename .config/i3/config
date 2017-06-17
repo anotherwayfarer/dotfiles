@@ -118,6 +118,7 @@ assign [class="^Chromium$"] $ws2
 # assign [class="^Firefox$"] $ws2
 assign [class="TelegramDesktop"] $ws3
 # assign [class="^Simplenote$"] $ws3
+assign [class="^Gimp$"] $ws5
 assign [class="^Tor Browser$"] $ws6
 assign [class="^Transmission-gtk"] $ws7
 assign [title="^TeamViewer$"] $ws8
@@ -232,7 +233,7 @@ workspace $ws2 gaps inner 10
 exec_always --no-startup-id feh --bg-fill ~/Pictures/wall1.jpg
 exec_always compton -f
 exec --no-startup-id xset dpms 600
-exec --no-startup-id xautolock -time 6 -locker $HOME/.config/i3/lock.sh
+# exec --no-startup-id xautolock -time 6 -locker $HOME/.config/i3/lock.sh
 
 # autostart
 exec chromium
