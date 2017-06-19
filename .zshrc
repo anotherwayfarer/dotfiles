@@ -46,6 +46,11 @@ export DEFAULT_USER=$(whoami)
 source ~/.zshrc_aliases
 source ~/.zshrc_fg_shortcut
 
+# export GPG_TTY=$(tty)
+# if [[ -n "$SSH_CONNECTION" ]] ;then
+# export PINENTRY_USER_DATA="USE_CURSES=1"
+# fi
+
 # greetings
 # fortune -s | cowsay -f default
 # curl wttr.in/Mycity

@@ -155,10 +155,7 @@ noremap <Left>  <Nop>
 noremap <Right> <Nop>
 
 map q: :q
-map :qq :q
-map :qqq :qa!
-" map :qqqq :qa!
-map :qQ :q
+map w: :w
 map :Q :q
 map :W :w
 

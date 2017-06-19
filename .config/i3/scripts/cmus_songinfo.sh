@@ -2,11 +2,18 @@
 
 DBSONGNAME="$(cmus-remote -Q | egrep 'tag title' | sed -r 's/^.{10}//')"
 DBARTISTNAME="$(cmus-remote -Q | egrep 'tag artist' | sed -r 's/^.{11}//')"
-OUTPUTLINE="$(echo $DBSONGNAME' - '$DBARTISTNAME)"
+OUTPUTLINE="$(echo $DBARTISTNAME' - '$DBSONGNAME)"
 
 if ((${#OUTPUTLINE} > 50))
 then
-    SONGLEN=45-${#DBARTISTNAME}
+    ARTISTLEN=${#DBARTISTNAME}
+    if (($ARTISTLEN > 25))
+    then
+        SONGLEN=27
+        DBARTISTNAME=${DBARTISTNAME:0:20}...
+    else
+        SONGLEN=45-${#DBARTISTNAME}
+    fi
     DBSONGNAME=${DBSONGNAME:0:SONGLEN}...
 fi
 
@@ -19,6 +26,6 @@ else
 fi
 
 case $BLOCK_BUTTON in
-    3) echo "$DBSONGINFO" | xclip ;;
+    3) echo "$OUTPUTLINE" | xclip ;;
     *) echo "$DBSONGINFO" ;;
 esac

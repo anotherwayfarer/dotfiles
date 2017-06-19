@@ -11,6 +11,7 @@ account-hook yandex.ru 'set imap_user=$my_yandex_user imap_pass=$my_yandex_pass'
 
 macro index <f2> '<change-folder>imaps://imap.gmail.com<enter>'
 macro index <f3> '<change-folder>imaps://imap.yandex.ru<enter>'
+macro index,pager \cb ": unset wait_key; set pipe_decode\n|w3m\n: set wait_key; unset pipe_decode\n" "call w3m to extract URLs out of a message"
 
 set alias_file    = ~/.mutt/aliases
 set mailcap_path  = ~/.mutt/mailcap

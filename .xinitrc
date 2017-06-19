@@ -5,7 +5,7 @@ xset -b
 xset dpms 600
 
 export TERMINAL=/usr/bin/urxvt
-export EDITOR=/usr/bin/vim
+export EDITOR=/usr/local/bin/vim
 export LC_ALL=en_US.UTF-8
 
 # exec feh --bg-scale /home/aim/mywall.png &

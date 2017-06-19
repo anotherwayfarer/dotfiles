@@ -35,10 +35,10 @@ bindsym $mod+shift+d exec --no-startup-id i3-dmenu-desktop \
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file.
 
-# scrot & gimp - root
-bindsym Print exec scrot -e 'mv $f /tmp/ && gimp /tmp/$f'
-# scrot & gimp - select window or rectangle
-bindsym Mod1+Print exec scrot -s -e 'mv $f /tmp/ && gimp /tmp/$f'
+# scrot
+bindsym Print exec scrot -e 'mkdir -p ~/Temp/Screenshots && mv $f ~/Temp/Screenshots/'
+# scrot & gimp
+bindsym $mod+Print exec scrot -e 'mkdir -p ~/Temp/Screenshots && mv $f ~/Temp/Screenshots/ && gimp ~/Temp/Screenshots/$f'
 
 # change focus
 bindsym $mod+h focus left
@@ -243,6 +243,6 @@ exec keepassx2 #launch in scratchpad
 # exec urxvt -name scratchpad -e keepassx2
 
 exec --no-startup-id i3-msg 'workspace $ws10; exec urxvt -e cmus; workspace $ws1'
-# exec --no-startup-id i3-msg 'workspace $ws3; exec urxvt -e mutt; workspace $ws1'
+exec --no-startup-id i3-msg 'workspace $ws3; exec urxvt -e mutt; workspace $ws1'
 
 exec i3-sensible-terminal -e tmux -u #in 1st workspace by default
