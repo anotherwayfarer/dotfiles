@@ -21,11 +21,13 @@ if [ "$DBARTISTNAME" = "" ]
 then
     DBSONGINFO="<span foreground='#828282'>Nothing</span>"
 else
-    DBSONGINFO="<span foreground='#b8b8b8'>"$DBARTISTNAME"</span> <b>-</b> "
+    DBSONGINFO="<span foreground='#f6dc69'>"$DBARTISTNAME"</span> <b>-</b> "
     DBSONGINFO=$DBSONGINFO"<span foreground='#d2d2d2'>"$DBSONGNAME"</span>"
 fi
 
 case $BLOCK_BUTTON in
+    1) echo "$DBSONGINFO" && exec i3-msg 'workspace 10 ' > /dev/null 2>&1 & ;;
     3) echo "$OUTPUTLINE" | xclip ;;
     *) echo "$DBSONGINFO" ;;
 esac
+

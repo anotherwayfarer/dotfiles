@@ -238,11 +238,11 @@ exec --no-startup-id xset dpms 600
 # autostart
 exec chromium
 exec ~/DevTools/Telegram/Telegram
-# exec /usr/share/simplenote/simplenote
 exec keepassx2 #launch in scratchpad
+# exec /usr/share/simplenote/simplenote
 # exec urxvt -name scratchpad -e keepassx2
 
-exec --no-startup-id i3-msg 'workspace $ws10; exec urxvt -e cmus; workspace $ws1'
 exec --no-startup-id i3-msg 'workspace $ws3; exec urxvt -e mutt; workspace $ws1'
+exec --no-startup-id i3-msg 'workspace $ws10; exec urxvt -e cmus; workspace $ws1'
 
 exec i3-sensible-terminal -e tmux -u #in 1st workspace by default

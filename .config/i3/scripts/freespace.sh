@@ -3,9 +3,9 @@
 VARSP="$(df -h "$1" | gawk 'NR == 2 {print $4}')"
 VARPERC="$(df -h "$1" | gawk 'NR == 2 {print $5}' | cut -f1 -d'%')"
 VARCOLOR="#b2b2b2"
-if [ $VARPERC -ge 75 ]; then
+if (( $VARPERC > 75 )); then
     VARCOLOR="#e74c3c"
-elif [ $VARPERC -ge 50 ]; then
+elif (( $VARPERC > 50 )); then
     VARCOLOR="#f1c40f"
 fi
 
