@@ -20,6 +20,11 @@ set mailcap_path  = ~/.mutt/mailcap
 source $alias_file
 set send_charset="utf-8"
 
+push <show-version>
+unset beep
+set quit=ask-yes
+unset mark_old # don't mark messages as old when I pass over them with the cursor
+
 set sort = 'reverse-date'
 set editor = vim
 #set copy = no

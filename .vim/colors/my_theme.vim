@@ -1,5 +1,4 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Vim color file, based on smyck by John-Paul
 " Maintainer:   Alexey Minchakov <lexaaim@ya.ru>
 " Last Change:  2017 June
 " License:      MIT
@@ -56,10 +55,10 @@ hi CursorLineNr     cterm=bold ctermbg=3    ctermfg=0
 " character under the cursor if it's a paired bracket
 hi MatchParen       cterm=none ctermbg=6    ctermfg=15
 " 'showmode' message (e.g. "-- INSERT --")
-hi ModeMsg          cterm=none ctermbg=none ctermfg=1
+hi ModeMsg          cterm=bold ctermbg=none ctermfg=4
 " :h more-prompt
 hi MoreMsg          cterm=none ctermbg=none ctermfg=1
-" symbold that do not really exist in the text
+" symbols that do not really exist in the text
 hi NonText          cterm=none ctermbg=none ctermfg=none
 " filler lines (~) after the last line in the buffer
 hi EndOfBuffer      cterm=none ctermbg=none ctermfg=0
