@@ -78,9 +78,9 @@ bindsym $mod+a focus parent
 # i3lock
 #bindsym $mod+shift+x exec i3lock
 
-set $ws1 "1 "
-set $ws2 "2 "
-set $ws3 "3 "
+set $ws1 "1 "
+set $ws2 "2 "
+set $ws3 "3 "
 set $ws4 "4 "
 set $ws5 "5 "
 set $ws6 "6 "
@@ -114,7 +114,7 @@ bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
 # workspace assignment (use "xprop")
-assign [class="^Chromium$"] $ws2
+assign [class="^Chromium$"] $ws1
 # assign [class="^Firefox$"] $ws2
 assign [class="TelegramDesktop"] $ws3
 # assign [class="^Simplenote$"] $ws3
@@ -124,6 +124,7 @@ assign [class="^Transmission-gtk"] $ws7
 assign [title="^TeamViewer$"] $ws8
 assign [class="^Steam$"] $ws9
 assign [class="^VirtualBox"] $ws9
+assign [class="^Audacious$"] $ws10
 # assign [class="^Deadbeef$"] $ws10
 
 # reload the configuration file
@@ -213,11 +214,11 @@ bar {
 
 bindsym $mod+t split toggle
 
-gaps inner 15
-gaps outer 10
+gaps inner 50
+gaps outer -10
 
-workspace $ws2 gaps outer 10
-workspace $ws2 gaps inner 10
+workspace $ws1 gaps outer 0
+workspace $ws1 gaps inner 10
 
 # workspace $ws3 gaps outer 20
 # workspace $ws3 gaps inner 20
@@ -242,7 +243,8 @@ exec keepassx2 #launch in scratchpad
 # exec /usr/share/simplenote/simplenote
 # exec urxvt -name scratchpad -e keepassx2
 
-exec --no-startup-id i3-msg 'workspace $ws3; exec urxvt -e mutt; workspace $ws1'
-exec --no-startup-id i3-msg 'workspace $ws10; exec urxvt -e cmus; workspace $ws1'
+# exec --no-startup-id i3-msg 'workspace $ws2;  exec urxvt -e mutt;'
+exec --no-startup-id i3-msg 'workspace $ws2;  exec urxvt -e tmux -u;'
+# exec --no-startup-id i3-msg 'workspace $ws10; exec urxvt -e cmus;'
+exec --no-startup-id i3-msg 'workspace $ws10; exec audacious;'
 
-exec i3-sensible-terminal -e tmux -u #in 1st workspace by default
