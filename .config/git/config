@@ -11,6 +11,7 @@
 	st = status
 	unstage = reset HEAD --
 	last = log -1 HEAD
+	df = difftool --tool=vimdiff -y
 [core]
 	autocrlf = input
 	editor = vim
