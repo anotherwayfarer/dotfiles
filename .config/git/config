@@ -3,8 +3,8 @@
 	email = lexaaim@gmail.com
 	signingKey = D29A8E58EE62417C7EC4B20E109E32EB85F002B0
 [alias]
-	lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(red)%h%C(reset) - %C(cyan)%aD%C(reset) %C(green)(%ar)%C(reset)%C(yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(bold blue)- %an%C(reset)' --all
-	lg1 = log --color --graph --pretty=format:'%C(red)%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	lg2 = log --graph --abbrev-commit --decorate --format=format:'%G? %C(red)%h%C(reset) - %C(cyan)%aD%C(reset) %C(green)(%ar)%C(reset)%C(yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(bold blue)- %an%C(reset)' --all
+	lg1 = log --color --graph --pretty=format:'%G? %C(red)%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 	lg = !"git lg1"
 	co = checkout
 	br = branch
@@ -21,3 +21,5 @@
 	gpgsign = true
 [tag]
 	gpgSign = true
+[gpg]
+	program = gpg2
