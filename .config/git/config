@@ -18,6 +18,6 @@
 	editor = vim
 	whitespace = trailing-space,space-before-tab
 [commit]
-	gpgsign = true
+    gpgsign = true
 [tag]
 	gpgSign = true
