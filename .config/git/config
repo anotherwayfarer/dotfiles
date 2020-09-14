@@ -1,7 +1,7 @@
 [user]
 	name = Alexey Minchakov
 	email = lexaaim@gmail.com
-	signingkey = 09ADE75F050D8EE05A2E7A5F24A30E5E87BBB416
+	signingKey = D29A8E58EE62417C7EC4B20E109E32EB85F002B0
 [alias]
 	lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(red)%h%C(reset) - %C(cyan)%aD%C(reset) %C(green)(%ar)%C(reset)%C(yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(bold blue)- %an%C(reset)' --all
 	lg1 = log --color --graph --pretty=format:'%C(red)%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
@@ -18,6 +18,6 @@
 	editor = vim
 	whitespace = trailing-space,space-before-tab
 [commit]
-    gpgsign = true
+	gpgsign = true
 [tag]
 	gpgSign = true
