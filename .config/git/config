@@ -12,6 +12,7 @@
 	unstage = reset HEAD --
 	last = log -1 HEAD
 	df = difftool --tool=vimdiff -y
+	dif = diff
 [core]
 	autocrlf = input
 	editor = vim
@@ -22,3 +23,5 @@
 	gpgSign = true
 [gpg]
 	program = gpg2
+[pull]
+	ff = only
